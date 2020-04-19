@@ -35,6 +35,7 @@ function outputLink(cap, link, raw) {
 module.exports = class Tokenizer {
   constructor(options) {
     this.options = options || defaults;
+    this.rules = null;
   }
 
   space(src) {
@@ -445,6 +446,31 @@ module.exports = class Tokenizer {
       }
       const token = outputLink(cap, link, cap[0]);
       return token;
+    }
+  }
+
+  ruby(src) {
+    const cap = this.rules.inline.ruby.exec(src);
+    if (cap) {
+      return {
+        type: 'ruby',
+        raw: cap[0],
+        text: cap[1]
+      };
+    }
+  }
+
+  rt(src) {
+    const cap = this.rules.inline.rt.exec(src);
+    if (cap) {
+      return {
+        type: 'rt',
+        raw: cap[0],
+        text: cap[1],
+        annotation: cap[2],
+        textTokens: null,
+        annotationTokens: null
+      };
     }
   }
 

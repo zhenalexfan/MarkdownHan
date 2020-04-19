@@ -15,7 +15,10 @@ describe('Parser', () => {
             type: 'paragraph',
             text: 'paragraph 1',
             tokens: [
-              { type: 'text', text: 'paragraph 1' }
+              {
+                type: 'text',
+                text: 'paragraph 1'
+              }
             ]
           },
           { type: 'space' },
@@ -23,7 +26,10 @@ describe('Parser', () => {
             type: 'paragraph',
             text: 'paragraph 2',
             tokens: [
-              { type: 'text', text: 'paragraph 2' }
+              {
+                type: 'text',
+                text: 'paragraph 2'
+              }
             ]
           }
         ],
@@ -47,7 +53,10 @@ describe('Parser', () => {
           depth: 1,
           text: 'heading',
           tokens: [
-            { type: 'text', text: 'heading' }
+            {
+              type: 'text',
+              text: 'heading'
+            }
           ]
         }],
         html: '<h1 id="heading">heading</h1>'
@@ -73,13 +82,25 @@ describe('Parser', () => {
           cells: [['1', '2']],
           tokens: {
             header: [
-              [{ type: 'text', text: 'a' }],
-              [{ type: 'text', text: 'b' }]
+              [{
+                type: 'text',
+                text: 'a'
+              }],
+              [{
+                type: 'text',
+                text: 'b'
+              }]
             ],
             cells: [
               [
-                [{ type: 'text', text: '1' }],
-                [{ type: 'text', text: '2' }]
+                [{
+                  type: 'text',
+                  text: '1'
+                }],
+                [{
+                  type: 'text',
+                  text: '2'
+                }]
               ]
             ]
           }
@@ -111,7 +132,10 @@ describe('Parser', () => {
               type: 'paragraph',
               text: 'blockquote',
               tokens: [
-                { type: 'text', text: 'blockquote' }
+                {
+                  type: 'text',
+                  text: 'blockquote'
+                }
               ]
             }]
           }
@@ -136,7 +160,10 @@ describe('Parser', () => {
                   tokens: [{
                     type: 'text',
                     text: 'item 1',
-                    tokens: [{ type: 'text', text: 'item 1' }]
+                    tokens: [{
+                      type: 'text',
+                      text: 'item 1'
+                    }]
                   }]
                 },
                 {
@@ -145,7 +172,10 @@ describe('Parser', () => {
                   tokens: [{
                     type: 'text',
                     text: 'item 2',
-                    tokens: [{ type: 'text', text: 'item 2' }]
+                    tokens: [{
+                      type: 'text',
+                      text: 'item 2'
+                    }]
                   }]
                 }
               ]
@@ -174,7 +204,10 @@ describe('Parser', () => {
                   tokens: [{
                     type: 'text',
                     text: 'item 1',
-                    tokens: [{ type: 'text', text: 'item 1' }]
+                    tokens: [{
+                      type: 'text',
+                      text: 'item 1'
+                    }]
                   }]
                 },
                 {
@@ -183,7 +216,10 @@ describe('Parser', () => {
                   tokens: [{
                     type: 'text',
                     text: 'item 2',
-                    tokens: [{ type: 'text', text: 'item 2' }]
+                    tokens: [{
+                      type: 'text',
+                      text: 'item 2'
+                    }]
                   }]
                 }
               ]
@@ -212,7 +248,10 @@ describe('Parser', () => {
                   tokens: [{
                     type: 'text',
                     text: 'item 1',
-                    tokens: [{ type: 'text', text: 'item 1' }]
+                    tokens: [{
+                      type: 'text',
+                      text: 'item 1'
+                    }]
                   }]
                 },
                 {
@@ -221,7 +260,10 @@ describe('Parser', () => {
                   tokens: [{
                     type: 'text',
                     text: 'item 2',
-                    tokens: [{ type: 'text', text: 'item 2' }]
+                    tokens: [{
+                      type: 'text',
+                      text: 'item 2'
+                    }]
                   }]
                 }
               ]
@@ -250,7 +292,10 @@ describe('Parser', () => {
                   tokens: [{
                     type: 'text',
                     text: 'item 1',
-                    tokens: [{ type: 'text', text: 'item 1' }]
+                    tokens: [{
+                      type: 'text',
+                      text: 'item 1'
+                    }]
                   }]
                 },
                 {
@@ -259,7 +304,10 @@ describe('Parser', () => {
                   tokens: [{
                     type: 'text',
                     text: 'item 2',
-                    tokens: [{ type: 'text', text: 'item 2' }]
+                    tokens: [{
+                      type: 'text',
+                      text: 'item 2'
+                    }]
                   }]
                 }
               ]
@@ -290,7 +338,10 @@ describe('Parser', () => {
           type: 'paragraph',
           text: 'paragraph 1',
           tokens: [
-            { type: 'text', text: 'paragraph 1' }
+            {
+              type: 'text',
+              text: 'paragraph 1'
+            }
           ]
         }],
         html: '<p>paragraph 1</p>'
@@ -300,8 +351,14 @@ describe('Parser', () => {
     it('text', async() => {
       await expectHtml({
         tokens: [
-          { type: 'text', text: 'text 1' },
-          { type: 'text', text: 'text 2' }
+          {
+            type: 'text',
+            text: 'text 1'
+          },
+          {
+            type: 'text',
+            text: 'text 2'
+          }
         ],
         html: '<p>text 1\ntext 2</p>'
       });
@@ -313,7 +370,10 @@ describe('Parser', () => {
       await expectHtml({
         inline: true,
         tokens: [
-          { type: 'escape', text: '&gt;' }
+          {
+            type: 'escape',
+            text: '&gt;'
+          }
         ],
         html: '&gt;'
       });
@@ -323,9 +383,18 @@ describe('Parser', () => {
       await expectHtml({
         inline: true,
         tokens: [
-          { type: 'html', text: '<div>' },
-          { type: 'text', text: 'html' },
-          { type: 'html', text: '</div>' }
+          {
+            type: 'html',
+            text: '<div>'
+          },
+          {
+            type: 'text',
+            text: 'html'
+          },
+          {
+            type: 'html',
+            text: '</div>'
+          }
         ],
         html: '<div>html</div>'
       });
@@ -341,7 +410,10 @@ describe('Parser', () => {
             href: 'https://example.com',
             title: 'title',
             tokens: [
-              { type: 'text', text: 'link' }
+              {
+                type: 'text',
+                text: 'link'
+              }
             ]
           }
         ],
@@ -372,7 +444,10 @@ describe('Parser', () => {
             type: 'strong',
             text: 'strong',
             tokens: [
-              { type: 'text', text: 'strong' }
+              {
+                type: 'text',
+                text: 'strong'
+              }
             ]
           }
         ],
@@ -388,12 +463,70 @@ describe('Parser', () => {
             type: 'em',
             text: 'em',
             tokens: [
-              { type: 'text', text: 'em' }
+              {
+                type: 'text',
+                text: 'em'
+              }
             ]
           }
         ],
         html: '<em>em</em>'
       });
+    });
+
+    it('ruby', async() => {
+      await expectHtml(({
+        inline: true,
+        tokens: [
+          {
+            type: 'ruby',
+            raw: '*:汉语/hanyu/拼音/pinyin/:*',
+            text: '汉语/hanyu/拼音/pinyin/',
+            tokens: [
+              {
+                type: 'rt',
+                raw: '汉语/hanyu/',
+                text: '汉语',
+                annotation: 'hanyu',
+                textTokens: [
+                  {
+                    type: 'text',
+                    raw: '汉语',
+                    text: '汉语'
+                  }
+                ],
+                annotationTokens: [
+                  {
+                    type: 'text',
+                    raw: 'hanyu',
+                    text: 'hanyu'
+                  }
+                ]
+              }, {
+                type: 'rt',
+                raw: '拼音/pinyin/',
+                text: '拼音',
+                annotation: 'pinyin',
+                textTokens: [
+                  {
+                    type: 'text',
+                    raw: '拼音',
+                    text: '拼音'
+                  }
+                ],
+                annotationTokens: [
+                  {
+                    type: 'text',
+                    raw: 'pinyin',
+                    text: 'pinyin'
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        html: '<ruby>汉语<rt>hanyu</rt>拼音<rt>pinyin</rt></ruby>'
+      }));
     });
 
     it('codespan', async() => {
@@ -427,7 +560,10 @@ describe('Parser', () => {
             type: 'del',
             text: 'del',
             tokens: [
-              { type: 'text', text: 'del' }
+              {
+                type: 'text',
+                text: 'del'
+              }
             ]
           }
         ],
@@ -439,8 +575,14 @@ describe('Parser', () => {
       await expectHtml({
         inline: true,
         tokens: [
-          { type: 'text', text: 'text 1' },
-          { type: 'text', text: 'text 2' }
+          {
+            type: 'text',
+            text: 'text 1'
+          },
+          {
+            type: 'text',
+            text: 'text 2'
+          }
         ],
         html: 'text 1text 2'
       });

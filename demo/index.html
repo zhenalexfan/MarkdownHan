@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+    <script src="../lib/marked.js"></script>
+
+    <script>
+        function convertToMarkdown() {
+            var mdDocument = document.getElementById("input-markdown").value;
+            console.log(mdDocument);
+            document.getElementById("display").innerHTML = marked(mdDocument);
+        }
+
+        window.addEventListener("load", function () {
+            console.log("Page loaded...");
+            convertToMarkdown();
+
+            document.getElementById("action").onclick = function (event) {
+                convertToMarkdown();
+            };
+        })
+    </script>
+
+</head>
+
+<body lang="zh-Hans">
+    <h1>Markdown</h1>
+    <div>
+        <textarea id="input-markdown" style="width: 100%; height: 20%;">这是一个有~一种~多种*标记*的*:句/ju/子/zi/:*。
+        </textarea>
+        <button id="action">Display</button>
+    </div>
+
+    <div id="html">
+
+    </div>
+
+    <h1>Output</h1>
+    <div id="display">
+
+    </div>
+</body>
+
+
+
+</html>

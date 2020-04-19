@@ -347,6 +347,28 @@ module.exports = class Lexer {
         continue;
       }
 
+      // ruby (rt can only exist inside ruby)
+      if (token = this.tokenizer.ruby(src)) {
+        src = src.substring(token.raw.length);
+        let tokenText = token.text;
+        const innerTokens = [];
+        while (true) {
+          const rtToken = this.tokenizer.rt(tokenText);
+          if (rtToken) {
+            tokenText = tokenText.substring(rtToken.raw.length);
+            rtToken.textTokens = this.inlineTokens(rtToken.text);
+            rtToken.annotationTokens = this.inlineTokens(rtToken.annotation);
+            innerTokens.push(rtToken);
+          } else {
+            if (tokenText.length > 0) { innerTokens.push(this.inlineTokens(tokenText)); }
+            break;
+          }
+        }
+        token.tokens = innerTokens;
+        tokens.push(token);
+        continue;
+      }
+
       // strong
       if (token = this.tokenizer.strong(src)) {
         src = src.substring(token.raw.length);

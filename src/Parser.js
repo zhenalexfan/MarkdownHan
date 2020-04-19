@@ -223,6 +223,16 @@ module.exports = class Parser {
           out += renderer.em(this.parseInline(token.tokens, renderer));
           break;
         }
+        case 'ruby': {
+          out += renderer.ruby(this.parseInline(token.tokens, renderer));
+          break;
+        }
+        case 'rt': {
+          const textParsed = this.parseInline(token.textTokens, renderer);
+          const annotationParsed = this.parseInline(token.annotationTokens, renderer);
+          out += renderer.rt(textParsed, annotationParsed);
+          break;
+        }
         case 'codespan': {
           out += renderer.codespan(token.text);
           break;

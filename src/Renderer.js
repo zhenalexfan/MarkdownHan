@@ -119,6 +119,14 @@ module.exports = class Renderer {
     return '<em>' + text + '</em>';
   }
 
+  ruby(text) {
+    return '<ruby>' + text + '</ruby>';
+  }
+
+  rt(text, annotation) {
+    return text + '<rt>' + annotation + '</rt>';
+  }
+
   codespan(text) {
     return '<code>' + text + '</code>';
   }

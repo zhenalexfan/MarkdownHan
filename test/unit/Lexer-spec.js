@@ -720,6 +720,45 @@ a | b
         });
       });
 
+      it('ruby', () => {
+        expectInlineTokens({
+          md: '*:汉语/hanyu/拼音/pinyin/:*',
+          tokens: [
+            {
+              type: 'ruby',
+              raw: '*:汉语/hanyu/拼音/pinyin/:*',
+              text: '汉语/hanyu/拼音/pinyin/',
+              tokens: [
+                {
+                  type: 'rt',
+                  raw: '汉语/hanyu/',
+                  text: '汉语',
+                  annotation: 'hanyu',
+                  textTokens: [
+                    { type: 'text', raw: '汉语', text: '汉语' }
+                  ],
+                  annotationTokens: [
+                    { type: 'text', raw: 'hanyu', text: 'hanyu' }
+                  ]
+                }, {
+                  type: 'rt',
+                  raw: '拼音/pinyin/',
+                  text: '拼音',
+                  annotation: 'pinyin',
+                  textTokens: [
+                    { type: 'text', raw: '拼音', text: '拼音' }
+                  ],
+                  annotationTokens: [
+                    { type: 'text', raw: 'pinyin', text: 'pinyin' }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+        );
+      });
+
       it('strong', () => {
         expectInlineTokens({
           md: '**strong**',
