@@ -245,6 +245,10 @@ module.exports = class Parser {
           out += renderer.del(this.parseInline(token.tokens, renderer));
           break;
         }
+        case 'ins': {
+          out += renderer.ins(this.parseInline(token.tokens, renderer));
+          break;
+        }
         case 'text': {
           out += renderer.text(token.text);
           break;

@@ -11,14 +11,12 @@
     <script src="../lib/marked.js"></script>
 
     <style>
-        h1 {
-            text-align: center;
-            margin: 0 8px;
-            height: 56px;
-        }
 
         #title {
-            padding-top: 16px;
+            padding: 16px 0;
+            text-align: center;
+            margin: 0 8px;
+            height: 72px;
         }
 
         h2 {
@@ -26,7 +24,7 @@
         }
 
         #columns {
-            height: calc(100% - 56px - 16px - 38px - 16px);
+            height: calc(100% - 72px - 16px - 38px - 16px);
         }
 
         .content {
@@ -101,52 +99,98 @@
             border-width: 1px;
             padding: 4px;
             overflow: auto;
+            line-height: 1.8;
+            /*text-align: justify;*/
         }
     </style>
 
     <script>
 
-      let DEFAULT_LANG = 'zh';
+      let DEFAULT_LANG = 'zht';
 
       let LANGS = [
-        'en', 'zh', 'ja'
+        'en', 'zhs', 'zht', 'ja'
       ];
 
       let UI_STRINGS = {
         'title': {
           en: 'Demo',
-          zh: '演示',
+          zhs: '演示',
+          zht: '演示',
           ja: 'デモ'
         },
         'markdown-title': {
-          en: 'Markdown',
-          zh: 'Markdown内容',
-          ja: 'Markdownの記法'
+          en: 'Markdown Input',
+          zhs: 'Markdown输入',
+          zht: 'Markdown輸入',
+          ja: 'Markdownの入力'
         },
         'html-title': {
-          en: 'HTML',
-          zh: 'HTML内容',
-          ja: 'HTMLの記法'
+          en: 'HTML Output',
+          zhs: 'HTML输出',
+          zht: 'HTML輸出',
+          ja: 'HTMLの出力'
         },
         'preview-title': {
           en: 'Preview',
-          zh: '预览',
+          zhs: '预览',
+          zht: '預覽',
           ja: '内検'
         },
         'action-preview': {
           en: 'Preview',
-          zh: '预览',
+          zhs: '预览',
+          zht: '預覽',
           ja: '内検'
         }
       };
 
       let SAMPLES = {
         'en': '',
-        'zh': `《*:怜情/liánqíng/蜜意/miyi/:*》是一部于1983年上映的**美国剧情片**，由__布鲁斯·贝尔斯福德__执导，霍顿·福特编剧，主要情节围绕一位名叫麦克·斯莱奇的*酗酒乡村音乐歌手*展开，该角色由男演员罗伯特·杜瓦尔出演。其他几位配角包括泰丝·哈珀、贝蒂·巴克利、威尔福德·布利姆雷和艾伦·巴金等。影片的主题包括关爱家庭的重要性，面对死亡时获得精神上救赎的可能性等。由于试映表现不佳，环球影业没有花费多少成本来宣传本片，杜瓦尔将此归咎于该公司对乡村音乐缺乏一个基本的认识和了解。电影于1983年3月4日开始在有限的几家电影院上映。虽然票房表现欠佳，但获得了专业影评人的赞誉并在第56届奥斯卡金像奖角逐中获得包括最佳影片奖在内的5项提名，并最终赢得了男主角奖和原著剧本奖。截止2013年，这仍然是杜瓦尔唯一一次获奥斯卡奖。
+        'zhs': `# 超文本标记语言
 
-《憐情蜜意》是一部於1983年上映的美國劇情片，由布魯斯·貝爾斯福德執導，霍頓·福特編劇，主要情節圍繞一位名叫麥克·斯萊奇的酗酒鄉村音樂歌手展開，該角色由男演員羅伯特·杜瓦爾出演。其他幾位配角包括泰絲·哈珀、貝蒂·巴克利、威爾福德·布利姆雷和艾倫·巴金等。影片的主題包括關愛家庭的重要性，面對死亡時獲得精神上救贖的可能性等。由於試映表現不佳，環球影業沒有花費多少成本來宣傳本片，杜瓦爾將此歸咎於該公司對鄉村音樂缺乏一個基本的認識和了解。電影於1983年3月4日開始在有限的幾家電影院上映。雖然票房表現欠佳，但獲得了專業影評人的讚譽並在第56屆奧斯卡金像獎角逐中獲得包括最佳影片獎在內的5項提名，並最終贏得了男主角獎和原著劇本獎。截止2013年，這仍然是杜瓦爾唯一一次獲奧斯卡獎。
- `,
-        'ja': ``
+***:超/Chāo/文本/Wénběn/标记/Biāojì/:*语言**（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准*标记语言*。HTML是一种_:基础:__:技术:_，常与CSS、JavaScript一起被众多网站用于设计网页、网页应用程序以及移动应用程序的用户界面。[网页*:浏览/Liúlǎn/器/Qì/:*](https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8)可以*读取*HTML文件，并将其渲染成_:可视化:__:网页:_。HTML描述了一个网站的*结构语义*随著线索的呈现，使之成为一种标记语言~~而非编程语言~~。
+
+## 元素的属性
+
+许多**元素**存在一些*共通*的*:属性/Shǔxìng/:*：
+
+- \`id\`属性为元素提供了在全文档内的唯一标识。它用于*识别元素*，以便样式表可以改变其表现属性，脚本可以改变、显示或删除其内容或格式化。
+- \`class\`属性提供一种将类似元素分类的方式。常被用于_:语义化:_或_:格式化:_。例如，一个HTML文档可指定类\`<class="标记">\`来表明所有具有这一类值的元素都从属于文档的主文本。
+
+大多数元素采用与语言相关的属性\`dir\`来*指定[文字*:_:方向:_/Fāngxiàng/:*](https://zh.wikipedia.org/wiki/%E6%9D%B1%E4%BA%9E%E6%96%87%E5%AD%97%E6%8E%92%E5%88%97%E6%96%B9%E5%90%91)*，如\`rtl\`采用从右到左的文本，比如阿拉伯语、波斯语以及希伯来语。
+`,
+        'zht': `# 超文本標記語言
+
+***:超/Chāo/文本/Wénběn/標記/Biāojì/:*語言**（英語：HyperText Markup Language，簡稱：HTML）是壹種用於創建網頁的標準*標記語言*。HTML是壹種_:基礎:__:技術:_，常與CSS、JavaScript壹起被眾多網站用於設計網頁、網頁應用程序以及移動應用程序的用戶界面。[網頁*:瀏覽/Liúlǎn/器/Qì/:*](https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8)可以*讀取*HTML文件，並將其渲染成_:可視化:__:網頁:_。HTML描述了壹個網站的*結構語義*隨著線索的呈現，使之成為壹種標記語言~~而非編程語言~~。
+
+## 元素的屬性
+
+許多**元素**存在壹些*共通*的*:屬性/Shǔxìng/:*：
+
+- \`id\`屬性為元素提供了在全文檔內的唯壹標識。它用於*識別元素*，以便樣式表可以改變其表現屬性，腳本可以改變、顯示或刪除其內容或格式化。
+- \`class\`屬性提供壹種將類似元素分類的方式。常被用於_:語義化:_或_:格式化:_。例如，壹個HTML文檔可指定類\`<class="標記">\`來表明所有具有這壹類值的元素都從屬於文檔的主文本。
+
+大多數元素采用與語言相關的屬性\`dir\`來*指定[文字*:_:方向:_/Fāngxiàng/:*](https://zh.wikipedia.org/wiki/%E6%9D%B1%E4%BA%9E%E6%96%87%E5%AD%97%E6%8E%92%E5%88%97%E6%96%B9%E5%90%91)*，如\`rtl\`采用從右到左的文本，比如阿拉伯語、波斯語以及希伯來語。
+`,
+        'ja': `# 平仮名
+
+***:平/ひら/仮名/がな/:***は、日本語の*表記*に用いられる[音節文字](https://ja.wikipedia.org/wiki/%E9%9F%B3%E7%AF%80%E6%96%87%E5%AD%97)。かなの一種で、借字（万葉仮名）を起源として成立した。借字として使われる_:漢字:_を、極度に草体化したものである。
+
+## 概要
+
+現在の日本語で最も基本的な文字であり、主に次のような場面で用いられる。
+
+- **文章の表記に**用いる場合
+    - 仮名交じり文
+    - 漢字表記が無い*和語*を表す場合
+    - 漢字表記がある単語でも、漢字が常用漢字に含まれていないなど、読み書きしづらい場合
+- 音を示すことを目的とする場合
+    - 漢字の訓（訓読み、振り仮名・ルビを参照）
+    - 日本語の初学者を対象とする、他の文字の代替
+- [書道](https://ja.wikipedia.org/wiki/%E6%9B%B8%E9%81%93)の一分野であるかなに用いる場合
+- 人名につけられることがある
+`
       };
 
       function _selectLanguage(language) {
@@ -183,7 +227,7 @@
 
       function loadSample(language) {
         let sample;
-        if (SAMPLES[language] != 'undefined') {
+        if (SAMPLES[language] != undefined) {
           sample = SAMPLES[language];
         } else {
           sample = SAMPLES[DEFAULT_LANG];
@@ -197,6 +241,13 @@
         let html = marked(mdDocument);
         document.getElementById('html-content').innerText = html;
         document.getElementById('display-content').innerHTML = html;
+        // render Han.css
+        Han(document.querySelector('#display-content'))
+          // .render();
+          .initCond()
+          .renderElem()
+          .renderJiya()
+          .renderHWS();
       }
 
       window.addEventListener('load', function() {
@@ -230,7 +281,8 @@
 
     <div id="languages" class="buttons has-addons is-centered">
         <button class="button is-small" name="en">English</button>
-        <button class="button is-small" name="zh">中文</button>
+        <button class="button is-small" name="zhs">中文简体</button>
+        <button class="button is-small" name="zht">中文繁體</button>
         <button class="button is-small" name="ja">日本語</button>
     </div>
 
@@ -256,12 +308,13 @@
         </div>
 
         <div class="column right">
-            <div id="display" lang="zh-Hans" class="han-init-context" style="line-height: 1.7">
+            <div id="display" lang="zh-Hans" class="han-init-context">
                 <h2 name="preview-title">
                 </h2>
                 <div id="display-content"></div>
             </div>
         </div>
+
     </div>
 </div>
 

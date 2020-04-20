@@ -139,6 +139,10 @@ module.exports = class Renderer {
     return '<del>' + text + '</del>';
   }
 
+  ins(text) {
+    return '<ins>' + text + '</ins>';
+  }
+
   link(href, title, text) {
     href = cleanUrl(this.options.sanitize, this.options.baseUrl, href);
     if (href === null) {

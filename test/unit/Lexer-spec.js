@@ -33,14 +33,25 @@ describe('Lexer', () => {
             type: 'paragraph',
             raw: 'paragraph 1',
             text: 'paragraph 1',
-            tokens: [{ type: 'text', raw: 'paragraph 1', text: 'paragraph 1' }]
+            tokens: [{
+              type: 'text',
+              raw: 'paragraph 1',
+              text: 'paragraph 1'
+            }]
           },
-          { type: 'space', raw: '\n\n' },
+          {
+            type: 'space',
+            raw: '\n\n'
+          },
           {
             type: 'paragraph',
             raw: 'paragraph 2',
             text: 'paragraph 2',
-            tokens: [{ type: 'text', raw: 'paragraph 2', text: 'paragraph 2' }]
+            tokens: [{
+              type: 'text',
+              raw: 'paragraph 2',
+              text: 'paragraph 2'
+            }]
           }
         ]
       });
@@ -52,7 +63,12 @@ describe('Lexer', () => {
       expectTokens({
         md: '    code',
         tokens: [
-          { type: 'code', raw: '    code', text: 'code', codeBlockStyle: 'indented' }
+          {
+            type: 'code',
+            raw: '    code',
+            text: 'code',
+            codeBlockStyle: 'indented'
+          }
         ]
       });
     });
@@ -61,7 +77,12 @@ describe('Lexer', () => {
       expectTokens({
         md: '```\ncode\n```',
         tokens: [
-          { type: 'code', raw: '```\ncode\n```', text: 'code', lang: '' }
+          {
+            type: 'code',
+            raw: '```\ncode\n```',
+            text: 'code',
+            lang: ''
+          }
         ]
       });
     });
@@ -70,7 +91,12 @@ describe('Lexer', () => {
       expectTokens({
         md: '```text\ncode\n```',
         tokens: [
-          { type: 'code', raw: '```text\ncode\n```', text: 'code', lang: 'text' }
+          {
+            type: 'code',
+            raw: '```text\ncode\n```',
+            text: 'code',
+            lang: 'text'
+          }
         ]
       });
     });
@@ -104,56 +130,88 @@ lheading 2
             raw: '# heading 1\n\n',
             depth: 1,
             text: 'heading 1',
-            tokens: [{ type: 'text', raw: 'heading 1', text: 'heading 1' }]
+            tokens: [{
+              type: 'text',
+              raw: 'heading 1',
+              text: 'heading 1'
+            }]
           },
           {
             type: 'heading',
             raw: '## heading 2\n\n',
             depth: 2,
             text: 'heading 2',
-            tokens: [{ type: 'text', raw: 'heading 2', text: 'heading 2' }]
+            tokens: [{
+              type: 'text',
+              raw: 'heading 2',
+              text: 'heading 2'
+            }]
           },
           {
             type: 'heading',
             raw: '### heading 3\n\n',
             depth: 3,
             text: 'heading 3',
-            tokens: [{ type: 'text', raw: 'heading 3', text: 'heading 3' }]
+            tokens: [{
+              type: 'text',
+              raw: 'heading 3',
+              text: 'heading 3'
+            }]
           },
           {
             type: 'heading',
             raw: '#### heading 4\n\n',
             depth: 4,
             text: 'heading 4',
-            tokens: [{ type: 'text', raw: 'heading 4', text: 'heading 4' }]
+            tokens: [{
+              type: 'text',
+              raw: 'heading 4',
+              text: 'heading 4'
+            }]
           },
           {
             type: 'heading',
             raw: '##### heading 5\n\n',
             depth: 5,
             text: 'heading 5',
-            tokens: [{ type: 'text', raw: 'heading 5', text: 'heading 5' }]
+            tokens: [{
+              type: 'text',
+              raw: 'heading 5',
+              text: 'heading 5'
+            }]
           },
           {
             type: 'heading',
             raw: '###### heading 6\n\n',
             depth: 6,
             text: 'heading 6',
-            tokens: [{ type: 'text', raw: 'heading 6', text: 'heading 6' }]
+            tokens: [{
+              type: 'text',
+              raw: 'heading 6',
+              text: 'heading 6'
+            }]
           },
           {
             type: 'heading',
             raw: 'lheading 1\n==========\n\n',
             depth: 1,
             text: 'lheading 1',
-            tokens: [{ type: 'text', raw: 'lheading 1', text: 'lheading 1' }]
+            tokens: [{
+              type: 'text',
+              raw: 'lheading 1',
+              text: 'lheading 1'
+            }]
           },
           {
             type: 'heading',
             raw: 'lheading 2\n----------\n',
             depth: 2,
             text: 'lheading 2',
-            tokens: [{ type: 'text', raw: 'lheading 2', text: 'lheading 2' }]
+            tokens: [{
+              type: 'text',
+              raw: 'lheading 2',
+              text: 'lheading 2'
+            }]
           }
         ]
       });
@@ -166,7 +224,11 @@ lheading 2
           type: 'paragraph',
           raw: '####### heading 7',
           text: '####### heading 7',
-          tokens: [{ type: 'text', raw: '####### heading 7', text: '####### heading 7' }]
+          tokens: [{
+            type: 'text',
+            raw: '####### heading 7',
+            text: '####### heading 7'
+          }]
         }]
       });
     });
@@ -188,12 +250,28 @@ lheading 2
           raw: '| a | b |\n|---|---|\n| 1 | 2 |\n',
           tokens: {
             header: [
-              [{ type: 'text', raw: 'a', text: 'a' }],
-              [{ type: 'text', raw: 'b', text: 'b' }]
+              [{
+                type: 'text',
+                raw: 'a',
+                text: 'a'
+              }],
+              [{
+                type: 'text',
+                raw: 'b',
+                text: 'b'
+              }]
             ],
             cells: [[
-              [{ type: 'text', raw: '1', text: '1' }],
-              [{ type: 'text', raw: '2', text: '2' }]
+              [{
+                type: 'text',
+                raw: '1',
+                text: '1'
+              }],
+              [{
+                type: 'text',
+                raw: '2',
+                text: '2'
+              }]
             ]]
           }
         }]
@@ -215,14 +293,38 @@ lheading 2
           raw: '| a | b | c |\n|:--|:-:|--:|\n| 1 | 2 | 3 |\n',
           tokens: {
             header: [
-              [{ type: 'text', raw: 'a', text: 'a' }],
-              [{ type: 'text', raw: 'b', text: 'b' }],
-              [{ type: 'text', raw: 'c', text: 'c' }]
+              [{
+                type: 'text',
+                raw: 'a',
+                text: 'a'
+              }],
+              [{
+                type: 'text',
+                raw: 'b',
+                text: 'b'
+              }],
+              [{
+                type: 'text',
+                raw: 'c',
+                text: 'c'
+              }]
             ],
             cells: [[
-              [{ type: 'text', raw: '1', text: '1' }],
-              [{ type: 'text', raw: '2', text: '2' }],
-              [{ type: 'text', raw: '3', text: '3' }]
+              [{
+                type: 'text',
+                raw: '1',
+                text: '1'
+              }],
+              [{
+                type: 'text',
+                raw: '2',
+                text: '2'
+              }],
+              [{
+                type: 'text',
+                raw: '3',
+                text: '3'
+              }]
             ]]
           }
         }]
@@ -244,12 +346,28 @@ a | b
           raw: 'a | b\n--|--\n1 | 2\n',
           tokens: {
             header: [
-              [{ type: 'text', raw: 'a', text: 'a' }],
-              [{ type: 'text', raw: 'b', text: 'b' }]
+              [{
+                type: 'text',
+                raw: 'a',
+                text: 'a'
+              }],
+              [{
+                type: 'text',
+                raw: 'b',
+                text: 'b'
+              }]
             ],
             cells: [[
-              [{ type: 'text', raw: '1', text: '1' }],
-              [{ type: 'text', raw: '2', text: '2' }]
+              [{
+                type: 'text',
+                raw: '1',
+                text: '1'
+              }],
+              [{
+                type: 'text',
+                raw: '2',
+                text: '2'
+              }]
             ]]
           }
         }]
@@ -262,7 +380,10 @@ a | b
       expectTokens({
         md: '---',
         tokens: [
-          { type: 'hr', raw: '---' }
+          {
+            type: 'hr',
+            raw: '---'
+          }
         ]
       });
     });
@@ -282,7 +403,11 @@ a | b
               raw: 'blockquote',
               text: 'blockquote',
               tokens: [
-                { type: 'text', raw: 'blockquote', text: 'blockquote' }
+                {
+                  type: 'text',
+                  raw: 'blockquote',
+                  text: 'blockquote'
+                }
               ]
             }]
           }
@@ -316,7 +441,11 @@ a | b
                   type: 'text',
                   raw: 'item 1',
                   text: 'item 1',
-                  tokens: [{ type: 'text', raw: 'item 1', text: 'item 1' }]
+                  tokens: [{
+                    type: 'text',
+                    raw: 'item 1',
+                    text: 'item 1'
+                  }]
                 }]
               },
               {
@@ -329,7 +458,11 @@ a | b
                   type: 'text',
                   raw: 'item 2',
                   text: 'item 2',
-                  tokens: [{ type: 'text', raw: 'item 2', text: 'item 2' }]
+                  tokens: [{
+                    type: 'text',
+                    raw: 'item 2',
+                    text: 'item 2'
+                  }]
                 }]
               }
             ]
@@ -488,7 +621,10 @@ a | b
       expectTokens({
         md: '[link]: https://example.com',
         links: {
-          link: { href: 'https://example.com', title: undefined }
+          link: {
+            href: 'https://example.com',
+            title: undefined
+          }
         }
       });
     });
@@ -497,7 +633,10 @@ a | b
       expectTokens({
         md: '[link]: https://example.com "title"',
         links: {
-          link: { href: 'https://example.com', title: 'title' }
+          link: {
+            href: 'https://example.com',
+            title: 'title'
+          }
         }
       });
     });
@@ -507,27 +646,48 @@ a | b
     describe('inline', () => {
       it('paragraph', () => {
         expectInline({
-          token: { type: 'paragraph', text: 'text' },
+          token: {
+            type: 'paragraph',
+            text: 'text'
+          },
           tokens: [
-            { type: 'text', raw: 'text', text: 'text' }
+            {
+              type: 'text',
+              raw: 'text',
+              text: 'text'
+            }
           ]
         });
       });
 
       it('text', () => {
         expectInline({
-          token: { type: 'text', text: 'text' },
+          token: {
+            type: 'text',
+            text: 'text'
+          },
           tokens: [
-            { type: 'text', raw: 'text', text: 'text' }
+            {
+              type: 'text',
+              raw: 'text',
+              text: 'text'
+            }
           ]
         });
       });
 
       it('heading', () => {
         expectInline({
-          token: { type: 'heading', text: 'text' },
+          token: {
+            type: 'heading',
+            text: 'text'
+          },
           tokens: [
-            { type: 'text', raw: 'text', text: 'text' }
+            {
+              type: 'text',
+              raw: 'text',
+              text: 'text'
+            }
           ]
         });
       });
@@ -542,13 +702,29 @@ a | b
           },
           tokens: {
             header: [
-              [{ type: 'text', raw: 'a', text: 'a' }],
-              [{ type: 'text', raw: 'b', text: 'b' }]
+              [{
+                type: 'text',
+                raw: 'a',
+                text: 'a'
+              }],
+              [{
+                type: 'text',
+                raw: 'b',
+                text: 'b'
+              }]
             ],
             cells: [
               [
-                [{ type: 'text', raw: '1', text: '1' }],
-                [{ type: 'text', raw: '2', text: '2' }]
+                [{
+                  type: 'text',
+                  raw: '1',
+                  text: '1'
+                }],
+                [{
+                  type: 'text',
+                  raw: '2',
+                  text: '2'
+                }]
               ]
             ]
           }
@@ -557,7 +733,10 @@ a | b
 
       it('code no inline tokens', () => {
         expectInline({
-          token: { type: 'code', text: 'code' },
+          token: {
+            type: 'code',
+            text: 'code'
+          },
           tokens: undefined
         });
       });
@@ -568,7 +747,11 @@ a | b
         expectInlineTokens({
           md: '\\>',
           tokens: [
-            { type: 'escape', raw: '\\>', text: '&gt;' }
+            {
+              type: 'escape',
+              raw: '\\>',
+              text: '&gt;'
+            }
           ]
         });
       });
@@ -577,9 +760,25 @@ a | b
         expectInlineTokens({
           md: '<div>html</div>',
           tokens: [
-            { type: 'html', raw: '<div>', inLink: false, inRawBlock: false, text: '<div>' },
-            { type: 'text', raw: 'html', text: 'html' },
-            { type: 'html', raw: '</div>', inLink: false, inRawBlock: false, text: '</div>' }
+            {
+              type: 'html',
+              raw: '<div>',
+              inLink: false,
+              inRawBlock: false,
+              text: '<div>'
+            },
+            {
+              type: 'text',
+              raw: 'html',
+              text: 'html'
+            },
+            {
+              type: 'html',
+              raw: '</div>',
+              inLink: false,
+              inRawBlock: false,
+              text: '</div>'
+            }
           ]
         });
       });
@@ -589,9 +788,25 @@ a | b
           md: '<div>html</div>',
           options: { sanitize: true },
           tokens: [
-            { type: 'text', raw: '<div>', inLink: false, inRawBlock: false, text: '&lt;div&gt;' },
-            { type: 'text', raw: 'html', text: 'html' },
-            { type: 'text', raw: '</div>', inLink: false, inRawBlock: false, text: '&lt;/div&gt;' }
+            {
+              type: 'text',
+              raw: '<div>',
+              inLink: false,
+              inRawBlock: false,
+              text: '&lt;div&gt;'
+            },
+            {
+              type: 'text',
+              raw: 'html',
+              text: 'html'
+            },
+            {
+              type: 'text',
+              raw: '</div>',
+              inLink: false,
+              inRawBlock: false,
+              text: '&lt;/div&gt;'
+            }
           ]
         });
       });
@@ -607,7 +822,11 @@ a | b
               title: null,
               text: 'link',
               tokens: [
-                { type: 'text', raw: 'link', text: 'link' }
+                {
+                  type: 'text',
+                  raw: 'link',
+                  text: 'link'
+                }
               ]
             }
           ]
@@ -625,7 +844,11 @@ a | b
               title: 'title',
               text: 'link',
               tokens: [
-                { type: 'text', raw: 'link', text: 'link' }
+                {
+                  type: 'text',
+                  raw: 'link',
+                  text: 'link'
+                }
               ]
             }
           ]
@@ -667,7 +890,10 @@ a | b
           expectInlineTokens({
             md: '[link][]',
             links: {
-              link: { href: 'https://example.com', title: 'title' }
+              link: {
+                href: 'https://example.com',
+                title: 'title'
+              }
             },
             tokens: [
               {
@@ -690,7 +916,10 @@ a | b
           expectInlineTokens({
             md: '[link]',
             links: {
-              link: { href: 'https://example.com', title: 'title' }
+              link: {
+                href: 'https://example.com',
+                title: 'title'
+              }
             },
             tokens: [
               {
@@ -713,8 +942,16 @@ a | b
           expectInlineTokens({
             md: '[link]',
             tokens: [
-              { type: 'text', raw: '[', text: '[' },
-              { type: 'text', raw: 'link]', text: 'link]' }
+              {
+                type: 'text',
+                raw: '[',
+                text: '['
+              },
+              {
+                type: 'text',
+                raw: 'link]',
+                text: 'link]'
+              }
             ]
           });
         });
@@ -722,41 +959,93 @@ a | b
 
       it('ruby', () => {
         expectInlineTokens({
-          md: '*:汉语/hanyu/拼音/pinyin/:*',
+            md: '*:汉语/hanyu/拼音/pinyin/是什么:*',
+            tokens: [
+              {
+                type: 'ruby',
+                raw: '*:汉语/hanyu/拼音/pinyin/是什么:*',
+                text: '汉语/hanyu/拼音/pinyin/是什么',
+                tokens: [
+                  {
+                    type: 'rt',
+                    raw: '汉语/hanyu/',
+                    text: '汉语',
+                    annotation: 'hanyu',
+                    textTokens: [
+                      {
+                        type: 'text',
+                        raw: '汉语',
+                        text: '汉语'
+                      }
+                    ],
+                    annotationTokens: [
+                      {
+                        type: 'text',
+                        raw: 'hanyu',
+                        text: 'hanyu'
+                      }
+                    ]
+                  }, {
+                    type: 'rt',
+                    raw: '拼音/pinyin/',
+                    text: '拼音',
+                    annotation: 'pinyin',
+                    textTokens: [
+                      {
+                        type: 'text',
+                        raw: '拼音',
+                        text: '拼音'
+                      }
+                    ],
+                    annotationTokens: [
+                      {
+                        type: 'text',
+                        raw: 'pinyin',
+                        text: 'pinyin'
+                      }
+                    ]
+                  },
+                  {
+                    type: 'text',
+                    raw: '是什么',
+                    text: '是什么'
+                  }
+                ]
+              }
+            ]
+          }
+        );
+      });
+
+      it('ins', () => {
+        expectInlineTokens({
+          md: '_:插入:__:文本:_',
           tokens: [
             {
-              type: 'ruby',
-              raw: '*:汉语/hanyu/拼音/pinyin/:*',
-              text: '汉语/hanyu/拼音/pinyin/',
+              type: 'ins',
+              raw: '_:插入:_',
+              text: '插入',
               tokens: [
                 {
-                  type: 'rt',
-                  raw: '汉语/hanyu/',
-                  text: '汉语',
-                  annotation: 'hanyu',
-                  textTokens: [
-                    { type: 'text', raw: '汉语', text: '汉语' }
-                  ],
-                  annotationTokens: [
-                    { type: 'text', raw: 'hanyu', text: 'hanyu' }
-                  ]
-                }, {
-                  type: 'rt',
-                  raw: '拼音/pinyin/',
-                  text: '拼音',
-                  annotation: 'pinyin',
-                  textTokens: [
-                    { type: 'text', raw: '拼音', text: '拼音' }
-                  ],
-                  annotationTokens: [
-                    { type: 'text', raw: 'pinyin', text: 'pinyin' }
-                  ]
+                  type: 'text',
+                  raw: '插入',
+                  text: '插入'
+                }
+              ]
+            }, {
+              type: 'ins',
+              raw: '_:文本:_',
+              text: '文本',
+              tokens: [
+                {
+                  type: 'text',
+                  raw: '文本',
+                  text: '文本'
                 }
               ]
             }
           ]
-        }
-        );
+        });
       });
 
       it('strong', () => {
@@ -768,7 +1057,11 @@ a | b
               raw: '**strong**',
               text: 'strong',
               tokens: [
-                { type: 'text', raw: 'strong', text: 'strong' }
+                {
+                  type: 'text',
+                  raw: 'strong',
+                  text: 'strong'
+                }
               ]
             }
           ]
@@ -784,7 +1077,11 @@ a | b
               raw: '*em*',
               text: 'em',
               tokens: [
-                { type: 'text', raw: 'em', text: 'em' }
+                {
+                  type: 'text',
+                  raw: 'em',
+                  text: 'em'
+                }
               ]
             }
           ]
@@ -795,7 +1092,11 @@ a | b
         expectInlineTokens({
           md: '`code`',
           tokens: [
-            { type: 'codespan', raw: '`code`', text: 'code' }
+            {
+              type: 'codespan',
+              raw: '`code`',
+              text: 'code'
+            }
           ]
         });
       });
@@ -803,9 +1104,15 @@ a | b
       it('br', () => {
         expectInlineTokens({
           md: 'a\nb',
-          options: { gfm: true, breaks: true },
+          options: {
+            gfm: true,
+            breaks: true
+          },
           tokens: jasmine.arrayContaining([
-            { type: 'br', raw: '\n' }
+            {
+              type: 'br',
+              raw: '\n'
+            }
           ])
         });
       });
@@ -819,7 +1126,11 @@ a | b
               raw: '~~del~~',
               text: 'del',
               tokens: [
-                { type: 'text', raw: 'del', text: 'del' }
+                {
+                  type: 'text',
+                  raw: 'del',
+                  text: 'del'
+                }
               ]
             }
           ]
@@ -837,7 +1148,11 @@ a | b
                 text: 'https://example.com',
                 href: 'https://example.com',
                 tokens: [
-                  { type: 'text', raw: 'https://example.com', text: 'https://example.com' }
+                  {
+                    type: 'text',
+                    raw: 'https://example.com',
+                    text: 'https://example.com'
+                  }
                 ]
               }
             ]
@@ -855,7 +1170,11 @@ a | b
                 text: 'test@example.com',
                 href: 'mailto:test@example.com',
                 tokens: [
-                  { type: 'text', raw: 'test@example.com', text: 'test@example.com' }
+                  {
+                    type: 'text',
+                    raw: 'test@example.com',
+                    text: 'test@example.com'
+                  }
                 ]
               }
             ]
@@ -894,7 +1213,11 @@ a | b
                 text: 'https://example.com',
                 href: 'https://example.com',
                 tokens: [
-                  { type: 'text', raw: 'https://example.com', text: 'https://example.com' }
+                  {
+                    type: 'text',
+                    raw: 'https://example.com',
+                    text: 'https://example.com'
+                  }
                 ]
               }
             ]
@@ -904,7 +1227,10 @@ a | b
         it('url email', () => {
           expectInlineTokens({
             md: 'test@example.com',
-            options: { gfm: true, mangle: false },
+            options: {
+              gfm: true,
+              mangle: false
+            },
             tokens: [
               {
                 type: 'link',
@@ -912,7 +1238,11 @@ a | b
                 text: 'test@example.com',
                 href: 'mailto:test@example.com',
                 tokens: [
-                  { type: 'text', raw: 'test@example.com', text: 'test@example.com' }
+                  {
+                    type: 'text',
+                    raw: 'test@example.com',
+                    text: 'test@example.com'
+                  }
                 ]
               }
             ]
@@ -922,7 +1252,10 @@ a | b
         it('url mangle email', () => {
           expectInlineTokens({
             md: 'test@example.com',
-            options: { gfm: true, mangle: true },
+            options: {
+              gfm: true,
+              mangle: true
+            },
             tokens: [
               {
                 type: 'link',
@@ -958,12 +1291,12 @@ a | b
       describe('smartypants', () => {
         it('single quotes', () => {
           expectInlineTokens({
-            md: "'single quotes'",
+            md: '\'single quotes\'',
             options: { smartypants: true },
             tokens: [
               {
                 type: 'text',
-                raw: "'single quotes'",
+                raw: '\'single quotes\'',
                 text: '‘single quotes’'
               }
             ]

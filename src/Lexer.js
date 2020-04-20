@@ -347,7 +347,7 @@ module.exports = class Lexer {
         continue;
       }
 
-      // ruby (rt can only exist inside ruby)
+      // ruby (MarkdownHan, rt can only exist inside ruby)
       if (token = this.tokenizer.ruby(src)) {
         src = src.substring(token.raw.length);
         let tokenText = token.text;
@@ -360,11 +360,19 @@ module.exports = class Lexer {
             rtToken.annotationTokens = this.inlineTokens(rtToken.annotation);
             innerTokens.push(rtToken);
           } else {
-            if (tokenText.length > 0) { innerTokens.push(this.inlineTokens(tokenText)); }
+            if (tokenText.length > 0) { innerTokens.push(... this.inlineTokens(tokenText)); }
             break;
           }
         }
         token.tokens = innerTokens;
+        tokens.push(token);
+        continue;
+      }
+
+      // ins (MarkdownHan)
+      if (token = this.tokenizer.ins(src)) {
+        src = src.substring(token.raw.length);
+        token.tokens = this.inlineTokens(token.text,);
         tokens.push(token);
         continue;
       }

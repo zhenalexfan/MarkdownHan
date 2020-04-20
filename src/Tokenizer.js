@@ -528,6 +528,17 @@ module.exports = class Tokenizer {
     }
   }
 
+  ins(src) {
+    const cap = this.rules.inline.ins.exec(src);
+    if (cap) {
+      return {
+        type: 'ins',
+        raw: cap[0],
+        text: cap[1] || cap[2],
+      }
+    }
+  }
+
   autolink(src, mangle) {
     const cap = this.rules.inline.autolink.exec(src);
     if (cap) {
