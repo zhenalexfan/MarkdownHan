@@ -3,46 +3,271 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bulma -->
+    <link rel="stylesheet" media="all" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <!-- Han.css/CSS -->
     <link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+    <!-- Marked -->
     <script src="../lib/marked.js"></script>
 
-    <script>
-        function convertToMarkdown() {
-            var mdDocument = document.getElementById("input-markdown").value;
-            console.log(mdDocument);
-            document.getElementById("display").innerHTML = marked(mdDocument);
+    <style>
+        h1 {
+            text-align: center;
+            margin: 0 8px;
+            height: 56px;
         }
 
-        window.addEventListener("load", function () {
-            console.log("Page loaded...");
-            convertToMarkdown();
+        #title {
+            padding-top: 16px;
+        }
 
-            document.getElementById("action").onclick = function (event) {
-                convertToMarkdown();
-            };
-        })
+        h2 {
+            height: 36px;
+        }
+
+        #columns {
+            height: calc(100% - 56px - 16px - 38px - 16px);
+        }
+
+        .content {
+            margin: 0 8px;
+        }
+
+        .column {
+            float: left;
+            height: 100%;
+        }
+
+        .column.left {
+            width: 50%;
+        }
+
+        .column.right {
+            width: 50%;
+        }
+
+        .code {
+            font-family: "Roboto Mono", "SF Mono", Menlo, Courier, monospace;
+            font-size: 0.8em;
+            line-height: 1.4;
+        }
+
+        #markdown .buttons {
+            align-items: start;
+            display: block;
+            float: right;
+            padding: 8px 0;
+            height: 72px;
+        }
+
+        #markdown {
+            margin: 0 8px;
+            height: 50%;
+        }
+
+        #markdown-input {
+            width: 100%;
+            height: calc(100% - 36px - 72px);
+            min-height: 4em;
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        #html {
+            margin: 0 8px;
+            min-height: 4em;
+            display: block;
+            height: 50%;
+        }
+
+        #html-content {
+            height: calc(100% - 36px);
+            border-style: solid;
+            border-color: #cccccc;
+            border-width: 1px;
+            padding: 4px;
+            overflow: auto;
+        }
+
+        #display {
+            margin: 0 8px;
+            height: 100%;
+        }
+
+        #display-content {
+            height: calc(100% - 36px);
+            border-style: solid;
+            border-color: #cccccc;
+            border-width: 1px;
+            padding: 4px;
+            overflow: auto;
+        }
+    </style>
+
+    <script>
+
+      let DEFAULT_LANG = 'zh';
+
+      let LANGS = [
+        'en', 'zh', 'ja'
+      ];
+
+      let UI_STRINGS = {
+        'title': {
+          en: 'Demo',
+          zh: '演示',
+          ja: 'デモ'
+        },
+        'markdown-title': {
+          en: 'Markdown',
+          zh: 'Markdown内容',
+          ja: 'Markdownの記法'
+        },
+        'html-title': {
+          en: 'HTML',
+          zh: 'HTML内容',
+          ja: 'HTMLの記法'
+        },
+        'preview-title': {
+          en: 'Preview',
+          zh: '预览',
+          ja: '内検'
+        },
+        'action-preview': {
+          en: 'Preview',
+          zh: '预览',
+          ja: '内検'
+        }
+      };
+
+      let SAMPLES = {
+        'en': '',
+        'zh': `《*:怜情/liánqíng/蜜意/miyi/:*》是一部于1983年上映的**美国剧情片**，由__布鲁斯·贝尔斯福德__执导，霍顿·福特编剧，主要情节围绕一位名叫麦克·斯莱奇的*酗酒乡村音乐歌手*展开，该角色由男演员罗伯特·杜瓦尔出演。其他几位配角包括泰丝·哈珀、贝蒂·巴克利、威尔福德·布利姆雷和艾伦·巴金等。影片的主题包括关爱家庭的重要性，面对死亡时获得精神上救赎的可能性等。由于试映表现不佳，环球影业没有花费多少成本来宣传本片，杜瓦尔将此归咎于该公司对乡村音乐缺乏一个基本的认识和了解。电影于1983年3月4日开始在有限的几家电影院上映。虽然票房表现欠佳，但获得了专业影评人的赞誉并在第56届奥斯卡金像奖角逐中获得包括最佳影片奖在内的5项提名，并最终赢得了男主角奖和原著剧本奖。截止2013年，这仍然是杜瓦尔唯一一次获奥斯卡奖。
+
+《憐情蜜意》是一部於1983年上映的美國劇情片，由布魯斯·貝爾斯福德執導，霍頓·福特編劇，主要情節圍繞一位名叫麥克·斯萊奇的酗酒鄉村音樂歌手展開，該角色由男演員羅伯特·杜瓦爾出演。其他幾位配角包括泰絲·哈珀、貝蒂·巴克利、威爾福德·布利姆雷和艾倫·巴金等。影片的主題包括關愛家庭的重要性，面對死亡時獲得精神上救贖的可能性等。由於試映表現不佳，環球影業沒有花費多少成本來宣傳本片，杜瓦爾將此歸咎於該公司對鄉村音樂缺乏一個基本的認識和了解。電影於1983年3月4日開始在有限的幾家電影院上映。雖然票房表現欠佳，但獲得了專業影評人的讚譽並在第56屆奧斯卡金像獎角逐中獲得包括最佳影片獎在內的5項提名，並最終贏得了男主角獎和原著劇本獎。截止2013年，這仍然是杜瓦爾唯一一次獲奧斯卡獎。
+ `,
+        'ja': ``
+      };
+
+      function _selectLanguage(language) {
+        // translate document
+        for (var key in UI_STRINGS) {
+          if (UI_STRINGS.hasOwnProperty(key)) {
+            let uiString = UI_STRINGS[key][language];
+            if (!uiString) uiString = UI_STRINGS[key][DEFAULT_LANG];
+            document.querySelector(`[name=${key}]`).innerHTML = uiString;
+          }
+        }
+
+        // change button states
+        LANGS.forEach(function(lang) {
+          let selector = `#languages [name=${lang}]`;
+          let languageButton = document.querySelector(selector);
+          if (!languageButton) throw `${selector} is null`;
+          if (lang != language) {
+            languageButton.classList.remove('is-light');
+          } else {
+            languageButton.classList.add('is-light');
+          }
+        });
+      }
+
+      function selectLanguage(language) {
+        _selectLanguage(language);
+        console.log(`Selected Language: ${language}`);
+
+        // load sample and convert to markdown
+        loadSample(language);
+        convertToMarkdown();
+      }
+
+      function loadSample(language) {
+        let sample;
+        if (SAMPLES[language] != 'undefined') {
+          sample = SAMPLES[language];
+        } else {
+          sample = SAMPLES[DEFAULT_LANG];
+        }
+        document.getElementById('markdown-input').value = sample;
+      }
+
+      function convertToMarkdown() {
+        let mdDocument = document.getElementById('markdown-input').value;
+        console.log(mdDocument);
+        let html = marked(mdDocument);
+        document.getElementById('html-content').innerText = html;
+        document.getElementById('display-content').innerHTML = html;
+      }
+
+      window.addEventListener('load', function() {
+        console.log('Page loaded...');
+
+        // init
+        selectLanguage(DEFAULT_LANG);
+        loadSample(DEFAULT_LANG);
+        convertToMarkdown();
+
+        document.getElementById('action').onclick = function(_) {
+          convertToMarkdown();
+        };
+
+        LANGS.forEach(function(lang) {
+          let selector = `#languages [name=${lang}]`;
+          let languageButton = document.querySelector(selector);
+          languageButton.onclick = function(_) {
+            selectLanguage(lang);
+          };
+        });
+      });
     </script>
 
 </head>
 
-<body lang="zh-Hans">
-    <h1>Markdown</h1>
-    <div>
-        <textarea id="input-markdown" style="width: 100%; height: 20%;">这是一个有~一种~多种*标记*的*:句/ju/子/zi/:*。
-        </textarea>
-        <button id="action">Display</button>
+<body>
+<div class="content" lang="zh-Hans">
+    <h1 id="title" name="title">
+    </h1>
+
+    <div id="languages" class="buttons has-addons is-centered">
+        <button class="button is-small" name="en">English</button>
+        <button class="button is-small" name="zh">中文</button>
+        <button class="button is-small" name="ja">日本語</button>
     </div>
 
-    <div id="html">
+    <div id="columns">
+        <div class="column left">
+            <div id="markdown">
+                <h2 name="markdown-title">
+                </h2>
+                <textarea id="markdown-input" lang="zh-Hans" class="code"></textarea>
+                <div class="buttons">
+                    <button id="action" class="button is-black" name="action-preview" style="width: 6em">
 
+                    </button>
+                </div>
+            </div>
+
+            <div id="html">
+                <h2 name="html-title">
+                </h2>
+                <div id="html-content" lang="zh-Hans" class="code">
+                </div>
+            </div>
+        </div>
+
+        <div class="column right">
+            <div id="display" lang="zh-Hans" class="han-init-context" style="line-height: 1.7">
+                <h2 name="preview-title">
+                </h2>
+                <div id="display-content"></div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <h1>Output</h1>
-    <div id="display">
 
-    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.js"></script>
 </body>
-
 
 
 </html>
