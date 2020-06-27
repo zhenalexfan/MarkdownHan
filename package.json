@@ -69,7 +69,8 @@
     "rollup:umd": "rollup -c rollup.config.js",
     "rollup:esm": "rollup -c rollup.config.esm.js",
     "minify": "uglifyjs lib/marked.js -cm  --comments /Copyright/ -o marked.min.js",
-    "preversion": "npm run build && (git diff --quiet || git commit -am build)"
+    "preversion": "npm run build && (git diff --quiet || git commit -am build)",
+    "build:playground": "npm run build && cp lib/marked.js playground/marked.js"
   },
   "engines": {
     "node": ">= 8.16.2"

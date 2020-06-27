@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Han.css/CSS -->
+    <link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,700&display=swap" rel="stylesheet">
     <!-- GitHub tag JS -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Bulma -->
     <link rel="stylesheet" media="all" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
-    <!-- Han.css/CSS -->
-    <link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
     <!-- Marked -->
-    <script src="../lib/marked.js"></script>
+    <script src="marked.js"></script>
 
     <style>
 
@@ -31,14 +31,14 @@
         }
 
         .header * {
-            font-family: 'Work Sans', sans-serif;
+            font-family: 'Work Sans', sans-serif !important;
         }
 
         h2 {
             height: 28px;
             /*margin-bottom: 0px !important;*/
             max-lines: 1;
-            font-family: 'Work Sans', sans-serif;
+            font-family: 'Work Sans', sans-serif !important;
         }
 
         .content {
@@ -57,7 +57,7 @@
         }
 
         .code {
-            font-family: "Roboto Mono", "SF Mono", Menlo, Courier, monospace;
+            font-family: "Roboto Mono", "SF Mono", Menlo, Courier, monospace !important;
             font-size: 0.8em;
             line-height: 1.4;
         }
@@ -67,13 +67,17 @@
         }
 
         .textarea-wrapper button {
-            position:absolute;
-            bottom:8px;
-            right:15px;
+            position: absolute;
+            bottom: 8px;
+            right: 15px;
         }
 
         .textarea-wrapper textarea {
             padding-bottom: 4em;
+        }
+
+        .checkbox, .checkbox * {
+            font-family: 'Work Sans', sans-serif !important;
         }
 
         #markdown {
@@ -126,6 +130,8 @@
         }
     </style>
 
+    <!-- Javascript -->
+
     <script>
 
       let DEFAULT_LANG = 'zht';
@@ -143,84 +149,289 @@
         // },
         'markdown-title': {
           en: 'Markdown Input',
-          zhs: 'Markdown输入',
-          zht: 'Markdown輸入',
-          ja: 'Markdownの入力'
+          zhs: 'Markdown Input',
+          zht: 'Markdown Input',
+          ja: 'Markdown Input'
         },
         'html-title': {
           en: 'HTML Output',
-          zhs: 'HTML输出',
-          zht: 'HTML輸出',
-          ja: 'HTMLの出力'
+          zhs: 'HTML Output',
+          zht: 'HTML Output',
+          ja: 'HTML Output'
         },
         'preview-title': {
           en: 'Preview',
-          zhs: '预览',
-          zht: '預覽',
-          ja: '内検'
+          zhs: 'Preview',
+          zht: 'Preview',
+          ja: 'Preview'
         },
         'action-preview': {
           en: 'Preview',
-          zhs: '预览',
-          zht: '預覽',
-          ja: '内検'
+          zhs: 'Preview',
+          zht: 'Preview',
+          ja: 'Preview'
         }
       };
 
       let SAMPLES = {
-        'en': '',
-        'zhs': `# 超文本标记语言
+        'en': `
+Download
+--------
 
-***:超/Chāo/文本/Wénběn/标记/Biāojì/:*语言**（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准*标记语言*。HTML是一种_:基础:__:技术:_，常与CSS、JavaScript一起被众多网站用于设计网页、网页应用程序以及移动应用程序的用户界面。[网页*:浏览/Liúlǎn/器/Qì/:*](https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8)可以*读取*HTML文件，并将其渲染成_:可视化:__:网页:_。HTML描述了一个网站的*结构语义*随著线索的呈现，使之成为一种标记语言~~而非编程语言~~。
+[Markdown 1.0.1][dl] (18 KB) -- 17 Dec 2004
 
-## 元素的属性
+[dl]: http://daringfireball.net/projects/downloads/Markdown_1.0.1.zip
 
-许多**元素**存在一些*共通*的*:属性/Shǔxìng/:*：
 
-- \`id\`属性为元素提供了在全文档内的唯一标识。它用于*识别元素*，以便样式表可以改变其表现属性，脚本可以改变、显示或删除其内容或格式化。
-- \`class\`属性提供一种将类似元素分类的方式。常被用于_:语义化:_或_:格式化:_。例如，一个HTML文档可指定类\`<class="标记">\`来表明所有具有这一类值的元素都从属于文档的主文本。
+Introduction
+------------
 
-大多数元素采用与语言相关的属性\`dir\`来*指定[文字*:_:方向:_/Fāngxiàng/:*](https://zh.wikipedia.org/wiki/%E6%9D%B1%E4%BA%9E%E6%96%87%E5%AD%97%E6%8E%92%E5%88%97%E6%96%B9%E5%90%91)*，如\`rtl\`采用从右到左的文本，比如阿拉伯语、波斯语以及希伯来语。
+Markdown is a text-to-HTML conversion tool for web writers. Markdown
+allows you to write using an easy-to-read, easy-to-write plain text
+format, then convert it to structurally valid XHTML (or HTML).
+
+Thus, "Markdown" is two things: (1) a plain text formatting syntax;
+and (2) a software tool, written in Perl, that converts the plain text
+formatting to HTML. See the [Syntax][] page for details pertaining to
+Markdown's formatting syntax. You can try it out, right now, using the
+online [Dingus][].
+
+  [syntax]: /projects/markdown/syntax
+  [dingus]: /projects/markdown/dingus
+
+The overriding design goal for Markdown's formatting syntax is to make
+it as readable as possible. The idea is that a Markdown-formatted
+document should be publishable as-is, as plain text, without looking
+like it's been marked up with tags or formatting instructions. While
+Markdown's syntax has been influenced by several existing text-to-HTML
+filters, the single biggest source of inspiration for Markdown's
+syntax is the format of plain text email.
+
+The best way to get a feel for Markdown's formatting syntax is simply
+to look at a Markdown-formatted document. For example, you can view
+the Markdown source for the article text on this page here:
+<http://daringfireball.net/projects/markdown/index.text>
+
+(You can use this '.text' suffix trick to view the Markdown source for
+the content of each of the pages in this section, e.g. the
+[Syntax][s_src] and [License][l_src] pages.)
+
+  [s_src]: /projects/markdown/syntax.text
+  [l_src]: /projects/markdown/license.text
+
+Markdown is free software, available under a BSD-style open source
+license. See the [License] [pl] page for more information.
+
+  [pl]: /projects/markdown/license
+
+
+Discussion List <a id="discussion-list" />
+---------------
+
+I've set up a public [mailing list for discussion about Markdown] [ml].
+Any topic related to Markdown -- both its formatting syntax and
+its software -- is fair game for discussion. Anyone who is interested
+is welcome to join.
+
+It's my hope that the mailing list will lead to good ideas for future
+improvements to Markdown.
+
+  [ml]: http://six.pairlist.net/mailman/listinfo/markdown-discuss
+
+
+Installation and Requirements <a id="install" />
+-----------------------------
+
+Markdown requires Perl 5.6.0 or later. Welcome to the 21st Century.
+Markdown also requires the standard Perl library module [Digest::MD5]
+[md5], which is probably already installed on your server.
+
+  [md5]: http://search.cpan.org/dist/Digest-MD5/MD5.pm
+
+
+### Movable Type ###
+
+Markdown works with Movable Type version 2.6 or later (including
+Movable Type 3.0).
+
+1.  Copy the "Markdown.pl" file into your Movable Type "plugins"
+	directory. The "plugins" directory should be in the same directory
+	as "mt.cgi"; if the "plugins" directory doesn't already exist, use
+	your FTP program to create it. Your installation should look like
+	this:
+
+        (mt home)/plugins/Markdown.pl
+
+2.  Once installed, Markdown will appear as an option in Movable Type's
+	Text Formatting pop-up menu. This is selectable on a per-post basis:
+
+	![Screenshot of Movable Type 'Text Formatting' Menu][tfmenu]
+
+	Markdown translates your posts to HTML when you publish; the posts
+	themselves are stored in your MT database in Markdown format.
+
+3.	If you also install SmartyPants 1.5 (or later), Markdown will
+	offer a second text formatting option: "Markdown With
+	SmartyPants". This option is the same as the regular "Markdown"
+	formatter, except that it automatically uses SmartyPants to create
+	typographically correct curly quotes, em-dashes, and ellipses. See
+	the [SmartyPants web page][sp] for more information.
+
+4.	To make Markdown (or "Markdown With SmartyPants") your default
+	text formatting option for new posts, go to Weblog Config:
+	Preferences.
+
+Note that by default, Markdown produces XHTML output. To configure
+Markdown to produce HTML 4 output, see "Configuration", below.
+
+  [sp]: http://daringfireball.net/projects/smartypants/
+
+
+
+### Blosxom ###
+
+Markdown works with Blosxom version 2.0 or later.
+
+1.  Rename the "Markdown.pl" plug-in to "Markdown" (case is
+    important). Movable Type requires plug-ins to have a ".pl"
+    extension; Blosxom forbids it.
+
+2.  Copy the "Markdown" plug-in file to your Blosxom plug-ins folder.
+    If you're not sure where your Blosxom plug-ins folder is, see the
+    Blosxom documentation for information.
+
+3.  That's it. The entries in your weblog will now automatically be
+	processed by Markdown.
+
+4.	If you'd like to apply Markdown formatting only to certain
+	posts, rather than all of them, Markdown can optionally be used in
+	conjunction with Blosxom's [Meta][] plug-in. First, install the
+	Meta plug-in. Next, open the Markdown plug-in file in a text
+	editor, and set the configuration variable \`$g_blosxom_use_meta\`
+	to 1. Then, simply include a "\`meta-markup: Markdown\`" header line
+	at the top of each post you compose using Markdown.
+
+  [meta]: http://www.blosxom.com/plugins/meta/meta.htm
+
+
+### BBEdit ###
+
+Markdown works with BBEdit 6.1 or later on Mac OS X. It also works
+with BBEdit 5.1 or later and MacPerl 5.6.1 on Mac OS 8.6 or later. If
+you're running Mac OS X 10.2 (Jaguar), you may need to install the
+Perl module [Digest::MD5] [md5] from CPAN; Digest::MD5 comes
+pre-installed on Mac OS X 10.3 (Panther).
+
+1.  Copy the "Markdown.pl" file to appropriate filters folder in your
+	"BBEdit Support" folder. On Mac OS X, this should be:
+
+        BBEdit Support/Unix Support/Unix Filters/
+
+    See the BBEdit documentation for more details on the location of
+    these folders.
+
+    You can rename "Markdown.pl" to whatever you wish.
+
+2.  That's it. To use Markdown, select some text in a BBEdit document,
+	then choose Markdown from the Filters sub-menu in the "#!" menu, or
+	the Filters floating palette
+
+
+
+Configuration  <a id="configuration"></a>
+-------------
+
+By default, Markdown produces XHTML output for tags with empty elements.
+E.g.:
+
+    <br />
+
+Markdown can be configured to produce HTML-style tags; e.g.:
+
+    <br>
+
+
+### Movable Type ###
+
+You need to use a special \`MTMarkdownOptions\` container tag in each
+Movable Type template where you want HTML 4-style output:
+
+    <MTMarkdownOptions output='html4'>
+        ... put your entry content here ...
+    </MTMarkdownOptions>
+
+The easiest way to use MTMarkdownOptions is probably to put the
+opening tag right after your \`<body>\` tag, and the closing tag right
+before \`</body>\`.
+
+To suppress Markdown processing in a particular template, i.e. to
+publish the raw Markdown-formatted text without translation into
+(X)HTML, set the \`output\` attribute to 'raw':
+
+    <MTMarkdownOptions output='raw'>
+        ... put your entry content here ...
+    </MTMarkdownOptions>
+
+
+### Command-Line ###
+
+Use the \`--html4tags\` command-line switch to produce HTML output from a
+Unix-style command line. E.g.:
+
+    % perl Markdown.pl --html4tags foo.text
+
+Type \`perldoc Markdown.pl\`, or read the POD documentation within the
+Markdown.pl source code for more information.
+
+
+Acknowledgements <a id="acknowledgements" />
+----------------
+
+[Aaron Swartz][] deserves a tremendous amount of credit for his feedback on the
+design of Markdown's formatting syntax. Markdown is *much* better thanks
+to Aaron's ideas, feedback, and testing. Also, Aaron's [html2text][]
+is a very handy (and free) utility for turning HTML into
+Markdown-formatted plain text.
+
+[Nathaniel Irons][], [Dan Benjamin][], [Daniel Bogan][], and [Jason Perkins][]
+also deserve thanks for their feedback.
+
+[Michel Fortin][] has ported Markdown to PHP; it's a splendid port, and highly recommended for anyone looking for a PHP implementation of Markdown.
+
+  [Aaron Swartz]:		http://www.aaronsw.com/
+  [Nathaniel Irons]:	http://bumppo.net/
+  [Dan Benjamin]:		http://hivelogic.com/
+  [Daniel Bogan]:		http://waferbaby.com/
+  [Jason Perkins]:		http://pressedpants.com/
+  [Michel Fortin]:		http://www.michelf.com/projects/php-markdown/
+  [html2text]:          http://www.aaronsw.com/2002/html2text/
+
+  [tfmenu]: /graphics/markdown/mt_textformat_menu.png
 `,
-        'zht': `# 超文本標記語言
+        'zhs': `# Markdown 是什么
 
-***:超/Chāo/文本/Wénběn/標記/Biāojì/:*語言**（英語：HyperText Markup Language，簡稱：HTML）是壹種用於創建網頁的標準*標記語言*。HTML是壹種_:基礎:__:技術:_，常與CSS、JavaScript壹起被眾多網站用於設計網頁、網頁應用程序以及移動應用程序的用戶界面。[網頁*:瀏覽/Liúlǎn/器/Qì/:*](https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8)可以*讀取*HTML文件，並將其渲染成_:可視化:__:網頁:_。HTML描述了壹個網站的*結構語義*隨著線索的呈現，使之成為壹種標記語言~~而非編程語言~~。
+Markdown是一种轻量级*:标记/biāojì/语言/yǔyán/:*，创始人为[约翰·格鲁伯](https://zh.wikipedia.org/wiki/約翰·格魯伯)（英语：John Gruber）。它允许人们使用*易读易写*的纯文本格式编写文档，然后转换成有效的XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。
 
-## 元素的屬性
+由于Markdown的_:轻量化、易读易写:_特性，并且对于**图片，图表、数学式**都有支持，目前许多网站都广泛使用Markdown来撰写~~帮助~~文档或是用于论坛上发表消息。如GitHub、Reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、简书等，甚至还能被使用来撰写电子书。`,
+        'zht': `# Markdown 是什麽
 
-許多**元素**存在壹些*共通*的*:屬性/Shǔxìng/:*：
+Markdown是壹種輕量級*:標記/biāojì/語言/yǔyán/:*，創始人為[約翰·格魯伯](https://zh.wikipedia.org/wiki/約翰·格魯伯)（英語：John Gruber）。它允許人們使用*易讀易寫*的純文本格式編寫文檔，然後轉換成有效的XHTML（或者HTML）文檔。這種語言吸收了很多在電子郵件中已有的純文本標記的特性。
 
-- \`id\`屬性為元素提供了在全文檔內的唯壹標識。它用於*識別元素*，以便樣式表可以改變其表現屬性，腳本可以改變、顯示或刪除其內容或格式化。
-- \`class\`屬性提供壹種將類似元素分類的方式。常被用於_:語義化:_或_:格式化:_。例如，壹個HTML文檔可指定類\`<class="標記">\`來表明所有具有這壹類值的元素都從屬於文檔的主文本。
+由於Markdown的_:輕量化、易讀易寫:_特性，並且對於**圖片，圖表、數學式**都有支持，目前許多網站都廣泛使用Markdown來撰寫~~幫助~~文檔或是用於論壇上發表消息。如GitHub、Reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、簡書等，甚至還能被使用來撰寫電子書。`,
+        'ja': `# Markdownの概要
 
-大多數元素采用與語言相關的屬性\`dir\`來*指定[文字*:_:方向:_/Fāngxiàng/:*](https://zh.wikipedia.org/wiki/%E6%9D%B1%E4%BA%9E%E6%96%87%E5%AD%97%E6%8E%92%E5%88%97%E6%96%B9%E5%90%91)*，如\`rtl\`采用從右到左的文本，比如阿拉伯語、波斯語以及希伯來語。
-`,
-        'ja': `# 平仮名
-
-***:平/ひら/仮名/がな/:***は、日本語の*表記*に用いられる[音節文字](https://ja.wikipedia.org/wiki/%E9%9F%B3%E7%AF%80%E6%96%87%E5%AD%97)。かなの一種で、借字（万葉仮名）を起源として成立した。借字として使われる_:漢字:_を、極度に草体化したものである。
-
-## 概要
-
-現在の日本語で最も基本的な文字であり、主に次のような場面で用いられる。
-
-- **文章の表記に**用いる場合
-    - 仮名交じり文
-    - 漢字表記が無い*和語*を表す場合
-    - 漢字表記がある単語でも、漢字が常用漢字に含まれていないなど、読み書きしづらい場合
-- 音を示すことを目的とする場合
-    - 漢字の訓（訓読み、振り仮名・ルビを参照）
-    - 日本語の初学者を対象とする、他の文字の代替
-- [書道](https://ja.wikipedia.org/wiki/%E6%9B%B8%E9%81%93)の一分野であるかなに用いる場合
-- 人名につけられることがある
-`
+*:Markdown/マークダウン/:*は、文書を記述するための*軽量*マークアップ言語のひとつである。本来は_:プレーンテキスト形式で:_手軽に書いた文書からHTMLを生成するために***:開/かい/発/はつ/:***されたものである。しかし、現在ではHTMLのほかパワーポイント形式やLaTeX形式のファイルへ変換するソフトウェア（コンバータ）も開発されている。各コンバータの開発者によって多様な拡張が施されるため、各種の方言が存在する。`
       };
+
+      let selectedLang = DEFAULT_LANG;
+      let useHanCss = true;
 
       function _selectLanguage(language) {
         // translate document
         for (var key in UI_STRINGS) {
           if (UI_STRINGS.hasOwnProperty(key)) {
             let uiString = UI_STRINGS[key][language];
-            if (!uiString) uiString = UI_STRINGS[key][DEFAULT_LANG];
+            if (uiString === undefined) uiString = UI_STRINGS[key][DEFAULT_LANG];
             document.querySelector(`[name=${key}]`).innerHTML = uiString;
           }
         }
@@ -230,12 +441,14 @@
           let selector = `#languages [name=${lang}]`;
           let languageButton = document.querySelector(selector);
           if (!languageButton) throw `${selector} is null`;
-          if (lang != language) {
+          if (lang !== language) {
             languageButton.classList.remove('is-black');
           } else {
             languageButton.classList.add('is-black');
           }
         });
+
+        selectedLang = language;
       }
 
       function selectLanguage(language) {
@@ -249,7 +462,7 @@
 
       function loadSample(language) {
         let sample;
-        if (SAMPLES[language] != undefined) {
+        if (typeof SAMPLES[language] !== 'undefined') {
           sample = SAMPLES[language];
         } else {
           sample = SAMPLES[DEFAULT_LANG];
@@ -264,12 +477,31 @@
         document.getElementById('html-content').innerText = html;
         document.getElementById('display-content').innerHTML = html;
         // render Han.css
-        Han(document.querySelector('#display-content'))
-        // .render();
-          .initCond()
-          .renderElem()
-          .renderJiya()
-          .renderHWS();
+        let hanStylesheet = document.styleSheets[0];
+        let displayContent = document.querySelector('#display-content');
+        if (selectedLang === 'ja') {
+          displayContent.setAttribute('lang', 'ja');
+        } else {
+          displayContent.setAttribute('lang', 'zh-Hans');
+        }
+
+        if (useHanCss) {
+          hanStylesheet.disabled = false;
+          Han(displayContent)
+            .initCond().render();
+            // .renderElem()
+            // .renderJiya()
+            // .renderHWS();
+        } else {
+          hanStylesheet.disabled = true;
+          // Han(document.querySelector('#display-content'))
+          //   .initCond();
+        }
+      }
+
+      function toggleHanCssFeature(use) {
+        useHanCss = use;
+        convertToMarkdown();
       }
 
       window.addEventListener('load', function() {
@@ -291,26 +523,36 @@
             selectLanguage(lang);
           };
         });
+
+        let hanCssToggle = document.querySelector('#han-css-toggle');
+        hanCssToggle.addEventListener('change', function() {
+          console.log(`this.checked = ${this.checked}`)
+          toggleHanCssFeature(this.checked);
+        })
       });
     </script>
 
 </head>
 
+
+<!-- HTML Body -->
+
 <body>
-<div class="content" lang="zh-Hans">
+<div class="content">
     <div class="header">
         <div class="level">
 
             <div class="level-left">
                 <div id="title" class="level-item">
-                    <img src="../docs/img/markdown-han-logo.svg" width="160px" height="160px">
+                    <img src="img/markdown-han-logo.svg" width="160px" height="160px">
                 </div>
             </div>
             <div class="level-right">
+                <!-- TODO: uncomment Github badge -->
                 <!--<div class="level-item">-->
-                    <!--<a class="github-button" href="https://github.com/zhenalexfan/marked"-->
-                       <!--data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large"-->
-                       <!--aria-label="Star zhenalexfan/marked on GitHub">Star</a>-->
+                <!--<a class="github-button" href="https://github.com/zhenalexfan/marked"-->
+                <!--data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large"-->
+                <!--aria-label="Star zhenalexfan/marked on GitHub">Star</a>-->
                 <!--</div>-->
 
                 <div class="level-item">
@@ -340,7 +582,7 @@
                 <h2 name="markdown-title">
                 </h2>
                 <div class="textarea-wrapper">
-                <textarea id="markdown-input" lang="zh-Hans" class="code border-text-box"></textarea>
+                    <textarea id="markdown-input" lang="zh-Hans" class="code border-text-box"></textarea>
                     <button id="action" class="button is-black" name="action-preview" style="width: 6em">
                     </button>
                 </div>
@@ -359,10 +601,18 @@
         <div class="column right">
 
             <!-- result -->
-            <div id="display" lang="zh-Hans" class="han-init-context">
-                <h2 name="preview-title">
-                </h2>
-                <div id="display-content" class="border-text-box"></div>
+            <div id="display" class="han-init-context">
+                <div class="media">
+                    <div class="media-content"><h2 name="preview-title">
+                    </h2></div>
+                    <div class="media-right">
+                        <label class="checkbox">
+                            <input id="han-css-toggle" type="checkbox" checked>
+                            Use <a href="https://hanzi.pro/">Han.css (@ethantw)</a>
+                        </label>
+                    </div>
+                </div>
+                <div id="display-content" class="border-text-box" lang="ja"></div>
             </div>
         </div>
 
