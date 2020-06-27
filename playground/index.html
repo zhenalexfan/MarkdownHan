@@ -3,6 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,700&display=swap" rel="stylesheet">
+    <!-- GitHub tag JS -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Bulma -->
     <link rel="stylesheet" media="all" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
     <!-- Han.css/CSS -->
@@ -12,35 +16,43 @@
 
     <style>
 
-        #title {
-            padding: 16px 0;
-            text-align: center;
-            margin: 0 8px;
-            height: 72px;
+        body {
+            color: black;
+        }
+
+        code {
+            color: black;
+        }
+
+        .header {
+            padding: 32px 0;
+            text-align: start;
+            margin: 0 24px;
+        }
+
+        .header * {
+            font-family: 'Work Sans', sans-serif;
         }
 
         h2 {
-            height: 36px;
-        }
-
-        #columns {
-            height: calc(100% - 72px - 16px - 38px - 16px);
+            height: 28px;
+            /*margin-bottom: 0px !important;*/
+            max-lines: 1;
+            font-family: 'Work Sans', sans-serif;
         }
 
         .content {
             margin: 0 8px;
         }
 
+
+        #columns {
+            height: calc(100% - 160px);
+        }
+
         .column {
             float: left;
             height: 100%;
-        }
-
-        .column.left {
-            width: 50%;
-        }
-
-        .column.right {
             width: 50%;
         }
 
@@ -50,12 +62,18 @@
             line-height: 1.4;
         }
 
-        #markdown .buttons {
-            align-items: start;
-            display: block;
-            float: right;
-            padding: 8px 0;
-            height: 72px;
+        .textarea-wrapper {
+            position: relative;
+        }
+
+        .textarea-wrapper button {
+            position:absolute;
+            bottom:8px;
+            right:15px;
+        }
+
+        .textarea-wrapper textarea {
+            padding-bottom: 4em;
         }
 
         #markdown {
@@ -65,10 +83,8 @@
 
         #markdown-input {
             width: 100%;
-            height: calc(100% - 36px - 72px);
+            height: calc(100% - 72px);
             min-height: 4em;
-            border-style: solid;
-            border-width: 1px;
         }
 
         #html {
@@ -78,13 +94,16 @@
             height: 50%;
         }
 
-        #html-content {
-            height: calc(100% - 36px);
+        .border-text-box {
             border-style: solid;
-            border-color: #cccccc;
+            border-color: black;
             border-width: 1px;
-            padding: 4px;
+            padding: 8px;
             overflow: auto;
+        }
+
+        #html-content {
+            height: calc(100% - 72px);
         }
 
         #display {
@@ -93,14 +112,17 @@
         }
 
         #display-content {
-            height: calc(100% - 36px);
-            border-style: solid;
-            border-color: #cccccc;
-            border-width: 1px;
-            padding: 4px;
+            height: calc(100% - 72px);
             overflow: auto;
             line-height: 1.8;
+            /*font-family: "Biaodian Pro Serif", "Biaodian Pro Serif CNS", "Biaodian Serif", "Times", serif;*/
             /*text-align: justify;*/
+        }
+
+        @media (max-width: 768px) {
+            .column {
+                width: 100%;
+            }
         }
     </style>
 
@@ -113,12 +135,12 @@
       ];
 
       let UI_STRINGS = {
-        'title': {
-          en: 'Demo',
-          zhs: '演示',
-          zht: '演示',
-          ja: 'デモ'
-        },
+        // 'title': {
+        //   en: 'Demo',
+        //   zhs: '演示',
+        //   zht: '演示',
+        //   ja: 'デモ'
+        // },
         'markdown-title': {
           en: 'Markdown Input',
           zhs: 'Markdown输入',
@@ -209,9 +231,9 @@
           let languageButton = document.querySelector(selector);
           if (!languageButton) throw `${selector} is null`;
           if (lang != language) {
-            languageButton.classList.remove('is-light');
+            languageButton.classList.remove('is-black');
           } else {
-            languageButton.classList.add('is-light');
+            languageButton.classList.add('is-black');
           }
         });
       }
@@ -243,7 +265,7 @@
         document.getElementById('display-content').innerHTML = html;
         // render Han.css
         Han(document.querySelector('#display-content'))
-          // .render();
+        // .render();
           .initCond()
           .renderElem()
           .renderJiya()
@@ -276,42 +298,71 @@
 
 <body>
 <div class="content" lang="zh-Hans">
-    <h1 id="title" name="title">
-    </h1>
+    <div class="header">
+        <div class="level">
 
-    <div id="languages" class="buttons has-addons is-centered">
-        <button class="button is-small" name="en">English</button>
-        <button class="button is-small" name="zhs">中文简体</button>
-        <button class="button is-small" name="zht">中文繁體</button>
-        <button class="button is-small" name="ja">日本語</button>
-    </div>
-
-    <div id="columns">
-        <div class="column left">
-            <div id="markdown">
-                <h2 name="markdown-title">
-                </h2>
-                <textarea id="markdown-input" lang="zh-Hans" class="code"></textarea>
-                <div class="buttons">
-                    <button id="action" class="button is-black" name="action-preview" style="width: 6em">
-
-                    </button>
+            <div class="level-left">
+                <div id="title" class="level-item">
+                    <img src="../docs/img/markdown-han-logo.svg" width="160px" height="160px">
                 </div>
             </div>
+            <div class="level-right">
+                <!--<div class="level-item">-->
+                    <!--<a class="github-button" href="https://github.com/zhenalexfan/marked"-->
+                       <!--data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large"-->
+                       <!--aria-label="Star zhenalexfan/marked on GitHub">Star</a>-->
+                <!--</div>-->
 
-            <div id="html">
-                <h2 name="html-title">
-                </h2>
-                <div id="html-content" lang="zh-Hans" class="code">
+                <div class="level-item">
+                    <div id="languages" class="buttons has-addons is-left">
+                        <button class="button is-small is-active" name="en">English</button>
+                        <button class="button is-small is-active" name="zhs">中文简体</button>
+                        <button class="button is-small is-active" name="zht">中文繁體</button>
+                        <button class="button is-small is-active" name="ja">日本語</button>
+                    </div>
                 </div>
             </div>
         </div>
 
+
+        <div class="intro">
+            <p>MarkdownHan is an extension to Markdown featuring HTML <code>&lt;ruby&gt;</code> tag and more. </p>
+        </div>
+
+    </div>
+
+
+    <div id="columns">
+        <div class="column left">
+
+            <!-- markdown -->
+            <div id="markdown">
+                <h2 name="markdown-title">
+                </h2>
+                <div class="textarea-wrapper">
+                <textarea id="markdown-input" lang="zh-Hans" class="code border-text-box"></textarea>
+                    <button id="action" class="button is-black" name="action-preview" style="width: 6em">
+                    </button>
+                </div>
+            </div>
+
+            <!-- html -->
+            <div id="html">
+                <h2 name="html-title">
+                </h2>
+                <div id="html-content" lang="zh-Hans" class="code border-text-box">
+                </div>
+            </div>
+
+        </div>
+
         <div class="column right">
+
+            <!-- result -->
             <div id="display" lang="zh-Hans" class="han-init-context">
                 <h2 name="preview-title">
                 </h2>
-                <div id="display-content"></div>
+                <div id="display-content" class="border-text-box"></div>
             </div>
         </div>
 
