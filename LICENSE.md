@@ -6,6 +6,10 @@ If you contribute code to this project, you are implicitly allowing your code
 to be distributed under the MIT license. You are also implicitly verifying that
 all code is your original work. `</legalese>`
 
+## MarkdownHan
+
+Copyright for portions of project MarkdownHan are held by Christopher Jeffrey as part of project Marked. All other copyright for project MarkdownHan are held by Zhen Fan, 2020. (MIT License)
+
 ## Marked
 
 Copyright (c) 2011-2018, Christopher Jeffrey (https://github.com/chjj/)
