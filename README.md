@@ -1,6 +1,5 @@
-<a href="https://marked.js.org">
-  <img width="60px" height="60px" src="docs/img/markdown-han-logo.png" align="left" />
-</a>
+
+<img width="120px" height="60px" src="docs/img/markdown-han-logo.png" align="left" />
 
 
 # Introducing MarkdownHan
