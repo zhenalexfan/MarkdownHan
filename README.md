@@ -23,7 +23,7 @@ Markdown is a plain-text format for writing structured documents. It was develop
 
 ## Why M↓漢?
 
-As many discussions on the Chinese writing system have pointed out, currently, most digital writing and typography tools do not have a great support for Chinese. The CSS typography framework [Han.css](https://hanzi.pro/) by [Yijun CHEN](https://www.thetype.com/author/ethantw/) has a great number of features for Chinese *typography* on the web. Inspired by this project, I noticed that Markdown, the tool I use the most for *writing*, however, do not support structurally writing [ruby annotations](https://www.w3.org/International/articles/ruby/markup.en) — [while this feature has also been requested](https://discourse.gohugo.io/t/using-furigana-ruby-with-markdown/15156) — thus I decided to create an extension to the Markdown syntax. 
+As many discussions on the Chinese (or East Asia) writing systems have pointed out, currently, most digital *writing* and *typography* tools do not have a great support for features needed in Chinese writing. The CSS typography framework [Han.css](https://hanzi.pro/) by [Yijun CHEN](https://www.thetype.com/author/ethantw/) has a great number of features for Chinese and Japanese *typography* on the web. Inspired by this project, I noticed that Markdown, the tool I use the most for *writing*, however, do not support structurally writing [ruby annotations](https://www.w3.org/International/articles/ruby/markup.en) — [while this feature has also been requested](https://discourse.gohugo.io/t/using-furigana-ruby-with-markdown/15156) — thus decided to create an extension to the Markdown syntax. 
 
 ## What is new in M↓漢?
 
