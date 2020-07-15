@@ -1,10 +1,13 @@
 
-<img width="120px" height="60px" src="docs/img/markdown-han-logo.png" align="left" />
-
-
 # Introducing MarkdownHan
 
+* [阅读简体中文版](README.zhs.md).
+
+<img width="120px" height="60px" src="docs/img/markdown-han-logo.png" align="left" />
+
 MarkdownHan (stylized as M↓漢) is another dialect of Markdown, attempting to enable features commonly used in Chinese and Japanese writing. Specifically, M↓漢 brings [ruby markups](https://www.w3.org/International/articles/ruby/markup.en), inserted text, and deleted text to the original John Gruber version of Markdown syntax. 
+
+You can try using M↓漢 in the [web demo](http://playground.alexfan.dev/markdownhan). 
 
 ## What is Markdown?
 
