@@ -4,7 +4,7 @@
 * Read in English [here](README.md).
 
 <div>
-<img width="120px" height="60px" src="docs/img/markdown-han-logo.png" align="left" />
+<img width="120px" height="60px" src="docs/img/markdown-han-logo.png"/>
 </div>
 
 MarkdownHan（风格化作「M↓漢」） 是Markdown的又一个延伸，尝试为原有的Markdown语法增加了一些中文和日文写作里常用的特性。具体而言，[M↓漢在John Gruber的Markdown](https://daringfireball.net/projects/markdown/)基础上增加了写作中的[行间注](https://www.w3.org/International/articles/ruby/markup.en)、[增订](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins)和[删订](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del)的语法。
