@@ -1,76 +1,40 @@
 <a href="https://marked.js.org">
-  <img width="60px" height="60px" src="https://marked.js.org/img/logo-black.svg" align="right" />
+  <img width="60px" height="60px" src="docs/img/markdown-han-logo.png" align="left" />
 </a>
 
-# Marked
 
-[![npm](https://badgen.net/npm/v/marked)](https://www.npmjs.com/package/marked)
-[![gzip size](https://badgen.net/badgesize/gzip/https://cdn.jsdelivr.net/npm/marked/marked.min.js)](https://cdn.jsdelivr.net/npm/marked/marked.min.js)
-[![install size](https://badgen.net/packagephobia/install/marked)](https://packagephobia.now.sh/result?p=marked)
-[![downloads](https://badgen.net/npm/dt/marked)](https://www.npmjs.com/package/marked)
-[![dep](https://badgen.net/david/dep/markedjs/marked?label=deps)](https://david-dm.org/markedjs/marked)
-[![dev dep](https://badgen.net/david/dev/markedjs/marked?label=devDeps)](https://david-dm.org/markedjs/marked?type=dev)
-[![github actions](https://github.com/markedjs/marked/workflows/Tests/badge.svg)](https://github.com/markedjs/marked/actions)
-[![snyk](https://snyk.io/test/npm/marked/badge.svg)](https://snyk.io/test/npm/marked)
+# Introducing MarkdownHan
 
-- ⚡ built for speed
-- ⬇️ low-level compiler for parsing markdown without caching or blocking for long periods of time
-- ⚖️ light-weight while implementing all markdown features from the supported flavors & specifications
-- 🌐 works in a browser, on a server, or from a command line interface (CLI)
+MarkdownHan (stylized as M↓漢) is another dialect of Markdown, attempting to enable features commonly used in Chinese and Japanese writing. Specifically, M↓漢 brings [ruby markups](https://www.w3.org/International/articles/ruby/markup.en), inserted text, and deleted text to the original John Gruber version of Markdown syntax. 
 
-## Demo
+## What is Markdown?
 
-Checkout the [demo page](https://marked.js.org/demo/) to see marked in action ⛹️
+Markdown is a plain-text format for writing structured documents. It was developed by John Gruber (with help from Aaron Swartz) and released in 2004 in the form of a [syntax description](http://daringfireball.net/projects/markdown/syntax) and a Perl script for converting Markdown to HTML. Thereafter, Markdown was implemented in different languages, and used by millions of users on Reddit, StackOverflow, GitHub, and Telegram, etc. 
 
-## Docs
+## Why M↓漢?
 
-Our [documentation pages](https://marked.js.org) are also rendered using marked 💯
+As many discussions on the Chinese writing system have pointed out, currently, most digital writing and typography tools do not have a great support for Chinese. The CSS typography framework [Han.css](https://hanzi.pro/) by [Yijun CHEN](https://www.thetype.com/author/ethantw/) has a great number of features for Chinese *typography* on the web. Inspired by this project, I noticed that Markdown, the tool I use the most for *writing*, however, do not support structurally writing [ruby annotations](https://www.w3.org/International/articles/ruby/markup.en) — [while this feature has also been requested](https://discourse.gohugo.io/t/using-furigana-ruby-with-markdown/15156) — thus I decided to create an extension to the Markdown syntax. 
 
-Also read about:
+## What is new in M↓漢?
 
-* [Options](https://marked.js.org/#/USING_ADVANCED.md)
-* [Extensibility](https://marked.js.org/#/USING_PRO.md)
+The table below shows three new syntaxes enabled by M↓漢. 
 
-## Installation
+|Name  	|M↓漢 grammar sample   	|HTML output   	|
+|---	|---	|---	|
+|Ruby annotation  	|`*:中文/zhōngwén/写作/xiězuò/:*`   	|`<ruby>中文<rt>zhōngwén</rt>写作<rt>xiězuò</rt></ruby>`   	|
+|Inserted text   	|`中文_:写作:_`   	|`中文<ins>写作</ins>`   	|
+|Deleted text   	|`中文~~写作~~`   	|`中文<del>写作</del>`   	|
 
-**CLI:** `npm install -g marked`
+These new syntaxes can be used with original Markdown syntaxes. As just an attempt, this project does not discuss more specifications to these grammars. 
 
-**In-browser:** `npm install marked`
+Similar to Markdown, M↓漢 is also two things: (1) a text formatting syntax; (2) a script that converts M↓漢 plain text to HTML built with Javascript. The demo shows how this script works. 
 
-## Usage
+## Development
 
-### Warning: 🚨 Marked does not [sanitize](https://marked.js.org/#/USING_ADVANCED.md#options) the output HTML. Please use a sanitize library, like [DOMPurify](https://github.com/cure53/DOMPurify) (recommended), [sanitize-html](https://github.com/apostrophecms/sanitize-html) or [insane](https://github.com/bevacqua/insane) on the output HTML! 🚨
+M↓漢 is a fork of [Marked](https://github.com/markedjs/marked), an open-source Javascript Markdown parser. 
 
-**CLI**
-
-``` bash
-$ marked -o hello.html
-hello world
-^D
-$ cat hello.html
-<p>hello world</p>
-```
-
-**Browser**
-
-```html
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8"/>
-  <title>Marked in the browser</title>
-</head>
-<body>
-  <div id="content"></div>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    document.getElementById('content').innerHTML =
-      marked('# Marked in the browser\n\nRendered by **marked**.');
-  </script>
-</body>
-</html>
-```
+While M↓漢 passed test cases in the original Marked project, I did not create new test cases for its new syntaxes — there might be bugs when parsing complex text, but hopefully it should work as a demonstration and in most cases. 
 
 ## License
 
-Copyright (c) 2011-2018, Christopher Jeffrey. (MIT License)
+Copyright for portions of project MarkdownHan are held by Christopher Jeffrey as part of project Marked. All other copyright for project MarkdownHan are held by Zhen Fan, 2020. (MIT License)

@@ -1,5 +1,0 @@
-# Markdown 是什麽
-
-Markdown是壹種輕量級*:標記/biāojì/語言/yǔyán/:*，創始人為[約翰·格魯伯](https://zh.wikipedia.org/wiki/約翰·格魯伯)（英語：John Gruber）。它允許人們使用*易讀易寫*的純文本格式編寫文檔，然後轉換成有效的XHTML（或者HTML）文檔。這種語言吸收了很多在電子郵件中已有的純文本標記的特性。
-
-由於Markdown的_:輕量化、易讀易寫:_特性，並且對於**圖片，圖表、數學式**都有支持，目前許多網站都廣泛使用Markdown來撰寫~~幫助~~文檔或是用於論壇上發表消息。如GitHub、Reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、簡書等，甚至還能被使用來撰寫電子書。

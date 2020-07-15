@@ -1,0 +1,37 @@
+# 介紹MarkdownHan
+
+[MarkdownHan](https://github.com/zhenalexfan/MarkdownHan)（風格化作**「M↓漢」**） 是Markdown的*又一個*延伸，嘗試為原有的Markdown語法增加了一些中文和日文寫作裏常用的特性。具體而言，M↓漢在[John Gruber的Markdown](https://daringfireball.net/projects/markdown/)基礎上增加了寫作中的[*:行/háng/間/jiān/注/zhù/:*](https://www.w3.org/International/articles/ruby/markup.en)、[_:增訂:_](https://www.w3schools.com/tags/tag_ins.asp)和[~~刪訂~~](https://www.w3schools.com/tags/tag_del.asp)的語法。
+
+你可以在這個網頁的「Markdown輸入」區域輸入文字測試使用M↓漢。
+
+## 什麽是Markdown？
+
+Markdown是一個用*純文本*來實現_:結構化:__:寫作:_的工具。它由John Gruber（在Aaron Swartz幫助下）開發，在2004年以其[語法說明](http://daringfireball.net/projects/markdown/syntax)和一個實現純文本向HTML轉換進行Markdown轉換的Perl腳本的形式問世。此後，Markdown被用許多語言實現，也漸漸被Reddit、StackOverflow、GitHub、Telegram等許多平台支持，被人們廣泛使用。
+
+## 為什麽提出了M↓漢？
+
+從互聯網上許多關于中文書寫系統的討論中，我認識到當前很多*寫作*和*字體排印*工具都在支持中文需求上有很多欠缺，甚至認為當前互聯網上中文的書寫習慣也已經被來自西方的工具改變。[陳奕鈞](https://www.thetype.com/author/ethantw/)的[漢字標准格式](https://hanzi.pro/)在*字體排印*上（網頁）支援了許多特性。受這個項目的啓示，我想到也許在*寫作*也可以做些什麽。因為自己寫作最常用的Markdown對東亞文字寫作常見的[行間注](https://www.w3.org/International/articles/ruby/markup.en)沒有支持——隨後也讀到了[有人在日語寫作中有這一需求](https://discourse.gohugo.io/t/using-furigana-ruby-with-markdown/15156)——便想嘗試為中文和日文的寫作擴展一些Markdown語法。
+
+## M↓漢新增的語法
+
+下面的表格說明了新增的三種語法。
+
+|名稱   	|M↓漢語法示例   	|轉換後的HTML示例   	|
+|---	|---	|---	|
+|行間注   	|`*:中文/zhōngwén/寫作/xiězuò/:*`   	|`<ruby>中文<rt>zhōngwén</rt>寫作<rt>xiězuò</rt></ruby>`   	|
+|增訂   	|`中文_:寫作:_`   	|`中文<ins>寫作</ins>`   	|
+|刪訂   	|`中文~~寫作~~`   	|`中文<del>寫作</del>`   	|
+
+可以與其他Markdown語法搭配使用。僅作為一次嘗試，故在此不提更多的規格說明。
+
+類似于Markdown，M↓漢除了是一種語法以外，也被實現成了一個按照M↓漢的語法將純文本轉換成HTML的Javascript程序。這個演示使用這段程序來展示了效果。
+
+## 開發
+
+M↓漢的程序在[Marked](https://github.com/markedjs/marked)的基礎上開發。Marked是一個開源的、Javascript編寫的Markdown解析器。
+
+M↓漢的開發通過了Marked工程裏的原有的所有測試。但沒有為新的語法新增新的測試——也許複雜情況下仍然存在問題，但希望還是可以用的。
+
+## License
+
+Copyright for portions of project MarkdownHan are held by Christopher Jeffrey as part of project Marked. All other copyright for project MarkdownHan are held by Zhen Fan, 2020. (MIT License)
