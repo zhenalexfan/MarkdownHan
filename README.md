@@ -1,6 +1,12 @@
 
 # Introducing MarkdownHan
 
+<p>
+<a href="LICENSE">
+    <img alt="Liscence MIT" src="https://img.shields.io/github/license/zhenalexfan/zige.js">
+</a>
+</p>
+
 * [阅读简体中文版](README.zhs.md).
 
 <div>
@@ -9,7 +15,7 @@
 
 MarkdownHan (stylized as M↓漢) is another dialect of Markdown, attempting to enable features commonly used in Chinese and Japanese writing. Specifically, M↓漢 brings [ruby markups](https://www.w3.org/International/articles/ruby/markup.en), inserted text, and deleted text to the original John Gruber version of Markdown syntax. 
 
-You can try using M↓漢 in the [web demo](http://playground.alexfan.dev/markdownhan). 
+Try using M↓漢 in the [web demo](http://playground.alexfan.dev/markdownhan)! 
 
 ## What is Markdown?
 
